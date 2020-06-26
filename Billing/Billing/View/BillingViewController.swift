@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BillingViewController.swift
 //  Billing
 //
 //  Created by Азизбек on 26.06.2020.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BillingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
 
 }
-
