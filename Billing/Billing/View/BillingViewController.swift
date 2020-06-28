@@ -14,6 +14,10 @@ class BillingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let getClass = GetClass()
+        getClass.chooseRequest(with: .GetBilling) { (response) in
+            print(response)
+        }
     }
 
 
