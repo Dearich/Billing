@@ -48,10 +48,23 @@ class BillingViewController: UIViewController {
     
 }
 extension BillingViewController: ContentOffsetYDelegate{
-    func headerAnimation(_ contentOffsetY: CGFloat) {
-     print(contentOffsetY)
+    func headerAnimation(contentOffsetY: CGFloat) {
+        print(contentOffsetY)
         
+        
+//        if headerView.bounds.height < 50{
+//            let height = max(contentOffsetY, headerView.bounds.height)
+//            headerView.heightAnchor.constraint(equalToConstant: height).isActive = true
+//        }else{
+//            let height = max(contentOffsetY, 50)
+//            headerView.heightAnchor.constraint(equalToConstant: height).isActive = true
+//        }
+//    }
+//
+//
+//    fileprivate func setAnimaton(with alpha: CGFloat, duration: TimeInterval) {
+//        UIView.animate(withDuration: duration) {
+//            self.headerView.collectionView.alpha = alpha
+//        }
     }
-    
-    
 }

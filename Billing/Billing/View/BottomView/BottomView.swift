@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ContentOffsetYDelegate {
-    func headerAnimation(_ contentOffsetY: CGFloat)
+    func headerAnimation(contentOffsetY: CGFloat)
 }
 
 class BottomView: UIView {
@@ -24,10 +24,10 @@ class BottomView: UIView {
         return view
     }()
     
-    
+    //MARK:-init tableView on SubView
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(BottomTableViewCell.self, forCellReuseIdentifier: "TableCell")
         backgroundColor = .white
         
         addSubview(tableView)
@@ -43,20 +43,29 @@ class BottomView: UIView {
     
 }
 
+//MARK:-TableViewDelegate and TableViewDataSource
+
 extension BottomView: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "Test"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! BottomTableViewCell
+        //Тестовый вариант для прорверки
+        cell.imageCategory.image = UIImage(named: "shop")
+        cell.categoryLabel.text = "Shopping"
+        cell.dateLabel.text = "23 июня 14:56"
+        cell.costLabel.text = "1000"
         return cell
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return bounds.height / 8
+    }
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        contentOffsetY.headerAnimation(scrollView.contentOffset.y)
-        
+        contentOffsetY.headerAnimation(contentOffsetY: -scrollView.contentOffset.y) // для анимации хедера
     }
     
     

@@ -48,7 +48,7 @@ class HeaderView: UIView {
     }
 }
 
-//MARK:- DataSource and Delegate for CV
+//MARK:- CollectionViewDataSource and CollectionViewDelegate
 
 extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,12 +58,22 @@ extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HeaderCollectionViewCell
         cell.backgroundColor = #colorLiteral(red: 0.4470588235, green: 0.4156862745, blue: 0.5843137255, alpha: 1)
         cell.layer.cornerRadius = 10
+        cell.balanceLabel.text = "balance:123123123"
+        cell.ownerLabel.text = "Owner: Tron"
+        //shadow
         let shadowSize: CGFloat = 7
         let contactRect = CGRect(x: -shadowSize, y: cell.bounds.height - (shadowSize * 0.4), width: cell.bounds.width + shadowSize * 2, height: shadowSize)
         cell.layer.shadowPath = UIBezierPath(ovalIn: contactRect).cgPath
         cell.layer.shadowRadius = 10
         cell.layer.shadowOpacity = 1
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(collectionCelllongTapped)))
+    }
+    
+    @objc fileprivate func collectionCelllongTapped(){
+    
     }
 }
 
@@ -73,5 +83,3 @@ extension HeaderView: UICollectionViewDelegateFlowLayout{
         return CGSize(width: 170, height: 140)
     }
 }
-
-

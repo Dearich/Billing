@@ -32,13 +32,11 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        balanceLabel.text = "balance:123123123"
         addSubview(balanceLabel)
         balanceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
         balanceLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         balanceLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        ownerLabel.text = "Owner: Tron"
         addSubview(ownerLabel)
         ownerLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
         ownerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
