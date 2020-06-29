@@ -17,7 +17,7 @@ class ModuleBuilder {
     
     static func createMain() -> UIViewController {
         let view = BillingViewController()
-        //создаем презентерт тоже тут 
+//        создаем презентерт тоже тут 
 //        let billingViewController = .....
 //        view.mainPresenter = billingViewController
         return view
