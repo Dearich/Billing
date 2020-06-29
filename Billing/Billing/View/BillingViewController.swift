@@ -24,6 +24,7 @@ class BillingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         showSubviews()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
