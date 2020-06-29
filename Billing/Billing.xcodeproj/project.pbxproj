@@ -18,6 +18,10 @@
 		151FCD2E24A630D0000B6103 /* BillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD2C24A630D0000B6103 /* BillingViewController.swift */; };
 		151FCD2F24A630D0000B6103 /* BillingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 151FCD2D24A630D0000B6103 /* BillingViewController.xib */; };
 		151FCD3524A6410F000B6103 /* GetClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3424A6410F000B6103 /* GetClass.swift */; };
+		795364A624A7690E0092B9FD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364A524A7690E0092B9FD /* HeaderView.swift */; };
+		795364A824A76B770092B9FD /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364A724A76B770092B9FD /* BottomView.swift */; };
+		795364AC24A7F4050092B9FD /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364AB24A7F4050092B9FD /* HeaderCollectionViewCell.swift */; };
+		795364AE24A7FEE20092B9FD /* BottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364AD24A7FEE20092B9FD /* BottomTableViewCell.swift */; };
 		151FCD3724A753E5000B6103 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3624A753E5000B6103 /* RequestType.swift */; };
 		151FCD3A24A8CE9C000B6103 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3924A8CE9C000B6103 /* BillingModel.swift */; };
 		151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */; };
@@ -51,6 +55,11 @@
 		151FCD2C24A630D0000B6103 /* BillingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewController.swift; sourceTree = "<group>"; };
 		151FCD2D24A630D0000B6103 /* BillingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillingViewController.xib; sourceTree = "<group>"; };
 		151FCD3424A6410F000B6103 /* GetClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClass.swift; sourceTree = "<group>"; };
+
+		795364A524A7690E0092B9FD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		795364A724A76B770092B9FD /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		795364AB24A7F4050092B9FD /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		795364AD24A7FEE20092B9FD /* BottomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTableViewCell.swift; sourceTree = "<group>"; };
 		151FCD3624A753E5000B6103 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		151FCD3924A8CE9C000B6103 /* BillingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingModel.swift; sourceTree = "<group>"; };
 		151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
@@ -141,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				151FCD2C24A630D0000B6103 /* BillingViewController.swift */,
+				795364A924A7A0300092B9FD /* HeaderView */,
+				795364AA24A7A03A0092B9FD /* BottomView */,
 				151FCD2D24A630D0000B6103 /* BillingViewController.xib */,
 			);
 			path = View;
@@ -174,6 +185,22 @@
 			path = NetworkServices;
 			sourceTree = "<group>";
 		};
+		795364A924A7A0300092B9FD /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				795364A524A7690E0092B9FD /* HeaderView.swift */,
+				795364AB24A7F4050092B9FD /* HeaderCollectionViewCell.swift */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		795364AA24A7A03A0092B9FD /* BottomView */ = {
+			isa = PBXGroup;
+			children = (
+				795364A724A76B770092B9FD /* BottomView.swift */,
+				795364AD24A7FEE20092B9FD /* BottomTableViewCell.swift */,
+			);
+			path = BottomView;
 		151FCD3824A8CE6D000B6103 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795364AC24A7F4050092B9FD /* HeaderCollectionViewCell.swift in Sources */,
 				151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */,
 				151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */,
 				151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */,
@@ -386,9 +414,12 @@
 				151FCD2524A62FDC000B6103 /* Presenter.swift in Sources */,
 				151FCD3724A753E5000B6103 /* RequestType.swift in Sources */,
 				151FCD0524A600F4000B6103 /* SceneDelegate.swift in Sources */,
+				795364A824A76B770092B9FD /* BottomView.swift in Sources */,
 				151FCD3524A6410F000B6103 /* GetClass.swift in Sources */,
 				151FCD2724A62FF7000B6103 /* Builder.swift in Sources */,
 				151FCD2E24A630D0000B6103 /* BillingViewController.swift in Sources */,
+				795364AE24A7FEE20092B9FD /* BottomTableViewCell.swift in Sources */,
+				795364A624A7690E0092B9FD /* HeaderView.swift in Sources */,
 				151FCD3A24A8CE9C000B6103 /* BillingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,8 +574,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QS4Z3MJ49V;
+				DEVELOPMENT_TEAM = T5TD98UB89;
 				INFOPLIST_FILE = Billing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,8 +594,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QS4Z3MJ49V;
+				DEVELOPMENT_TEAM = T5TD98UB89;
 				INFOPLIST_FILE = Billing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -584,7 +617,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = BillingTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -607,7 +640,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = BillingTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
