@@ -12,17 +12,29 @@
 		<key>Pods-Billing.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>3</integer>
+=======
+			<integer>4</integer>
+>>>>>>> 60f17a22775a5ed59582948a7a9ec01a3feb14e9
 		</dict>
 		<key>Pods-BillingTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>4</integer>
+=======
+			<integer>5</integer>
+>>>>>>> 60f17a22775a5ed59582948a7a9ec01a3feb14e9
 		</dict>
 		<key>RxCocoa.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>5</integer>
+=======
+			<integer>6</integer>
+>>>>>>> 60f17a22775a5ed59582948a7a9ec01a3feb14e9
 		</dict>
 		<key>RxRelay.xcscheme_^#shared#^_</key>
 		<dict>

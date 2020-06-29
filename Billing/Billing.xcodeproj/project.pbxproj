@@ -18,16 +18,16 @@
 		151FCD2E24A630D0000B6103 /* BillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD2C24A630D0000B6103 /* BillingViewController.swift */; };
 		151FCD2F24A630D0000B6103 /* BillingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 151FCD2D24A630D0000B6103 /* BillingViewController.xib */; };
 		151FCD3524A6410F000B6103 /* GetClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3424A6410F000B6103 /* GetClass.swift */; };
-		795364A624A7690E0092B9FD /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364A524A7690E0092B9FD /* HeaderView.swift */; };
-		795364A824A76B770092B9FD /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364A724A76B770092B9FD /* BottomView.swift */; };
-		795364AC24A7F4050092B9FD /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364AB24A7F4050092B9FD /* HeaderCollectionViewCell.swift */; };
-		795364AE24A7FEE20092B9FD /* BottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795364AD24A7FEE20092B9FD /* BottomTableViewCell.swift */; };
 		151FCD3724A753E5000B6103 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3624A753E5000B6103 /* RequestType.swift */; };
 		151FCD3A24A8CE9C000B6103 /* BillingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3924A8CE9C000B6103 /* BillingModel.swift */; };
 		151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */; };
 		151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */; };
 		151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD4024A92C17000B6103 /* TransactionModel.swift */; };
 		67B714C77D449D72AE427414 /* Pods_Billing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6C2B6686EAA885B769A117 /* Pods_Billing.framework */; };
+		79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406224A9F51500D214FB /* BottomTableViewCell.swift */; };
+		79D8406724A9F51500D214FB /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406324A9F51500D214FB /* BottomView.swift */; };
+		79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */; };
+		79D8406C24A9F5C700D214FB /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406A24A9F5C700D214FB /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,11 +55,6 @@
 		151FCD2C24A630D0000B6103 /* BillingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingViewController.swift; sourceTree = "<group>"; };
 		151FCD2D24A630D0000B6103 /* BillingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BillingViewController.xib; sourceTree = "<group>"; };
 		151FCD3424A6410F000B6103 /* GetClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClass.swift; sourceTree = "<group>"; };
-
-		795364A524A7690E0092B9FD /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		795364A724A76B770092B9FD /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
-		795364AB24A7F4050092B9FD /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
-		795364AD24A7FEE20092B9FD /* BottomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTableViewCell.swift; sourceTree = "<group>"; };
 		151FCD3624A753E5000B6103 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		151FCD3924A8CE9C000B6103 /* BillingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingModel.swift; sourceTree = "<group>"; };
 		151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
@@ -67,6 +62,10 @@
 		151FCD4024A92C17000B6103 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		4469BE0C2AE5CB39F9686AB0 /* Pods-BillingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BillingTests.debug.xcconfig"; path = "Target Support Files/Pods-BillingTests/Pods-BillingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6620AD7114647D55D894C12A /* Pods-Billing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing.release.xcconfig"; path = "Target Support Files/Pods-Billing/Pods-Billing.release.xcconfig"; sourceTree = "<group>"; };
+		79D8406224A9F51500D214FB /* BottomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomTableViewCell.swift; sourceTree = "<group>"; };
+		79D8406324A9F51500D214FB /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		79D8406A24A9F5C700D214FB /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8E6C2B6686EAA885B769A117 /* Pods_Billing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Billing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00DFC7F07D3507D9C7BF8D8 /* Pods-Billing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing.debug.xcconfig"; path = "Target Support Files/Pods-Billing/Pods-Billing.debug.xcconfig"; sourceTree = "<group>"; };
 		D56DF0C01EE32B3A08DC77F5 /* Pods_BillingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BillingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,9 +148,9 @@
 		151FCD2B24A6308C000B6103 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				79D8406824A9F5C700D214FB /* HeaderView */,
+				79D8406124A9F51500D214FB /* BottomView */,
 				151FCD2C24A630D0000B6103 /* BillingViewController.swift */,
-				795364A924A7A0300092B9FD /* HeaderView */,
-				795364AA24A7A03A0092B9FD /* BottomView */,
 				151FCD2D24A630D0000B6103 /* BillingViewController.xib */,
 			);
 			path = View;
@@ -185,22 +184,6 @@
 			path = NetworkServices;
 			sourceTree = "<group>";
 		};
-		795364A924A7A0300092B9FD /* HeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				795364A524A7690E0092B9FD /* HeaderView.swift */,
-				795364AB24A7F4050092B9FD /* HeaderCollectionViewCell.swift */,
-			);
-			path = HeaderView;
-			sourceTree = "<group>";
-		};
-		795364AA24A7A03A0092B9FD /* BottomView */ = {
-			isa = PBXGroup;
-			children = (
-				795364A724A76B770092B9FD /* BottomView.swift */,
-				795364AD24A7FEE20092B9FD /* BottomTableViewCell.swift */,
-			);
-			path = BottomView;
 		151FCD3824A8CE6D000B6103 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +219,24 @@
 				F6000A25363BE1832240DB73 /* Pods-BillingTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		79D8406124A9F51500D214FB /* BottomView */ = {
+			isa = PBXGroup;
+			children = (
+				79D8406224A9F51500D214FB /* BottomTableViewCell.swift */,
+				79D8406324A9F51500D214FB /* BottomView.swift */,
+			);
+			path = BottomView;
+			sourceTree = "<group>";
+		};
+		79D8406824A9F5C700D214FB /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */,
+				79D8406A24A9F5C700D214FB /* HeaderView.swift */,
+			);
+			path = HeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,20 +407,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				795364AC24A7F4050092B9FD /* HeaderCollectionViewCell.swift in Sources */,
 				151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */,
 				151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */,
+				79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */,
+				79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */,
 				151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */,
 				151FCD0324A600F4000B6103 /* AppDelegate.swift in Sources */,
 				151FCD2524A62FDC000B6103 /* Presenter.swift in Sources */,
 				151FCD3724A753E5000B6103 /* RequestType.swift in Sources */,
 				151FCD0524A600F4000B6103 /* SceneDelegate.swift in Sources */,
-				795364A824A76B770092B9FD /* BottomView.swift in Sources */,
 				151FCD3524A6410F000B6103 /* GetClass.swift in Sources */,
+				79D8406C24A9F5C700D214FB /* HeaderView.swift in Sources */,
+				79D8406724A9F51500D214FB /* BottomView.swift in Sources */,
 				151FCD2724A62FF7000B6103 /* Builder.swift in Sources */,
 				151FCD2E24A630D0000B6103 /* BillingViewController.swift in Sources */,
-				795364AE24A7FEE20092B9FD /* BottomTableViewCell.swift in Sources */,
-				795364A624A7690E0092B9FD /* HeaderView.swift in Sources */,
 				151FCD3A24A8CE9C000B6103 /* BillingModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,9 +575,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T5TD98UB89;
+				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = Billing/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -594,9 +595,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = T5TD98UB89;
+				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = Billing/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -617,7 +618,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = BillingTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -640,7 +641,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = BillingTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
