@@ -9,12 +9,13 @@
 import UIKit
 
 protocol ContentOffsetYDelegate {
-    func headerAnimation(contentOffsetY: CGFloat)
+    func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
 }
 
 class BottomView: UIView {
     
     var contentOffsetY: ContentOffsetYDelegate!
+    var transactions: Transactions!
     
     lazy var tableView:UITableView = {
         let view = UITableView()
@@ -35,6 +36,11 @@ class BottomView: UIView {
         tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 25
+        self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
     }
     
     required init?(coder: NSCoder) {
@@ -47,25 +53,26 @@ class BottomView: UIView {
 
 extension BottomView: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        guard transactions != nil else {return 0}
+        return transactions!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! BottomTableViewCell
         //Тестовый вариант для прорверки
-        cell.imageCategory.image = UIImage(named: "shop")
-        cell.categoryLabel.text = "Shopping"
-        cell.dateLabel.text = "23 июня 14:56"
-        cell.costLabel.text = "1000"
+        guard transactions != nil else { return UITableViewCell() }
+        cell.transaction = transactions![indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return bounds.height / 8
+        return 100
     }
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        contentOffsetY.headerAnimation(contentOffsetY: -scrollView.contentOffset.y) // для анимации хедера
+        contentOffsetY.headerAnimation(contentOffsetY: scrollView.contentOffset.y) { (contentOffset) in
+            scrollView.contentOffset.y = contentOffset
+        }  // для анимации хедера
     }
     
     

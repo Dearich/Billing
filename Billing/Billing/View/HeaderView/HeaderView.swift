@@ -9,7 +9,9 @@
 import UIKit
 
 class HeaderView: UIView {
-    
+
+    var billingArray: Billings!
+
     lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         view.dataSource = self
@@ -17,10 +19,10 @@ class HeaderView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
-        view.backgroundColor = #colorLiteral(red: 0.9176470588, green: 0.5647058824, blue: 0.4784313725, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         return view
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -28,16 +30,14 @@ class HeaderView: UIView {
         addSubview(collectionView)
         collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25).isActive = true
-        
+        collectionView.addConstraintsWithFormat(format: "V:|-[v0]-|", views: collectionView)
     }
-    
+
     //MARK:- Padding and ScrollDirection in CV
     fileprivate func flowLayout(){
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-            let padding : CGFloat = 25
-            layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
+            let padding : CGFloat = 10
+            layout.sectionInset = .init(top: padding, left: padding, bottom: padding , right: padding)
             layout.minimumLineSpacing = 25
             layout.scrollDirection = .horizontal
         }
@@ -52,14 +52,17 @@ class HeaderView: UIView {
 
 extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        guard billingArray != nil else {return 0}
+        return billingArray!.count
     }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard billingArray != nil else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HeaderCollectionViewCell
         cell.backgroundColor = #colorLiteral(red: 0.4470588235, green: 0.4156862745, blue: 0.5843137255, alpha: 1)
         cell.layer.cornerRadius = 10
-        cell.balanceLabel.text = "balance:123123123"
-        cell.ownerLabel.text = "Owner: Tron"
+        cell.balanceLabel.text = billingArray![indexPath.row].balance
+        cell.ownerLabel.text = billingArray![indexPath.row].owner
         //shadow
         let shadowSize: CGFloat = 7
         let contactRect = CGRect(x: -shadowSize, y: cell.bounds.height - (shadowSize * 0.4), width: cell.bounds.width + shadowSize * 2, height: shadowSize)
@@ -73,13 +76,13 @@ extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource{
     }
     
     @objc fileprivate func collectionCelllongTapped(){
-    
+        
     }
 }
 
 //MARK:- Size for Cells
 extension HeaderView: UICollectionViewDelegateFlowLayout{
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 170, height: 140)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 170.0, height: collectionView.frame.height * 0.7)
     }
 }

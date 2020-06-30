@@ -23,6 +23,7 @@
 		151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */; };
 		151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */; };
 		151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD4024A92C17000B6103 /* TransactionModel.swift */; };
+		15DDCA4324AA43B000CD8DF3 /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */; };
 		67B714C77D449D72AE427414 /* Pods_Billing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6C2B6686EAA885B769A117 /* Pods_Billing.framework */; };
 		79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406224A9F51500D214FB /* BottomTableViewCell.swift */; };
 		79D8406724A9F51500D214FB /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406324A9F51500D214FB /* BottomView.swift */; };
@@ -60,6 +61,7 @@
 		151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
 		151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInternetConnection.swift; sourceTree = "<group>"; };
 		151FCD4024A92C17000B6103 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
 		4469BE0C2AE5CB39F9686AB0 /* Pods-BillingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BillingTests.debug.xcconfig"; path = "Target Support Files/Pods-BillingTests/Pods-BillingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6620AD7114647D55D894C12A /* Pods-Billing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing.release.xcconfig"; path = "Target Support Files/Pods-Billing/Pods-Billing.release.xcconfig"; sourceTree = "<group>"; };
 		79D8406224A9F51500D214FB /* BottomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		151FCD3024A63119000B6103 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */,
 				151FCD3B24A8D4C8000B6103 /* JSONHelper */,
 				151FCD3224A640AF000B6103 /* NetworkServices */,
 			);
@@ -415,6 +418,7 @@
 				151FCD0324A600F4000B6103 /* AppDelegate.swift in Sources */,
 				151FCD2524A62FDC000B6103 /* Presenter.swift in Sources */,
 				151FCD3724A753E5000B6103 /* RequestType.swift in Sources */,
+				15DDCA4324AA43B000CD8DF3 /* CosntraintService.swift in Sources */,
 				151FCD0524A600F4000B6103 /* SceneDelegate.swift in Sources */,
 				151FCD3524A6410F000B6103 /* GetClass.swift in Sources */,
 				79D8406C24A9F5C700D214FB /* HeaderView.swift in Sources */,

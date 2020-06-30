@@ -14,12 +14,10 @@ protocol ModuleBuilderProtocol{
 }
 
 class ModuleBuilder {
-    
     static func createMain() -> UIViewController {
         let view = BillingViewController()
-//        создаем презентерт тоже тут 
-//        let billingViewController = .....
-//        view.mainPresenter = billingViewController
+        let presenter = Presenter(view: view)
+        view.presenter = presenter
         return view
     }
 }
