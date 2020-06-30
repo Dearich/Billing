@@ -8,9 +8,14 @@
 
 import UIKit
 
-class HeaderView: UIView {
+protocol HeaderViewProtocol: class {
+    func showPopUpView()
+}
 
-    var billingArray: Billings!
+class HeaderView: UIView, ShowPopUpViewProtocol {
+
+    var billingArray: [Any]!
+    weak var headerViewDelegate: HeaderViewProtocol?
 
     lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -22,6 +27,7 @@ class HeaderView: UIView {
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         return view
     }()
+    var longPressGesture: UILongPressGestureRecognizer!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +37,26 @@ class HeaderView: UIView {
         collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         collectionView.addConstraintsWithFormat(format: "V:|-[v0]-|", views: collectionView)
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
+        collectionView.addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc func longTap(_ gesture: UIGestureRecognizer){
+        
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { return }
+        
+        case .ended:
+            
+            self.collectionView.reloadData()
+        default:
+            return
+        }
+    }
+    
+    func animationAddView() {
+          headerViewDelegate?.showPopUpView()
     }
 
     //MARK:- Padding and ScrollDirection in CV
@@ -59,25 +85,15 @@ extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard billingArray != nil else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HeaderCollectionViewCell
-        cell.backgroundColor = #colorLiteral(red: 0.4470588235, green: 0.4156862745, blue: 0.5843137255, alpha: 1)
-        cell.layer.cornerRadius = 10
-        cell.balanceLabel.text = billingArray![indexPath.row].balance
-        cell.ownerLabel.text = billingArray![indexPath.row].owner
-        //shadow
-        let shadowSize: CGFloat = 7
-        let contactRect = CGRect(x: -shadowSize, y: cell.bounds.height - (shadowSize * 0.4), width: cell.bounds.width + shadowSize * 2, height: shadowSize)
-        cell.layer.shadowPath = UIBezierPath(ovalIn: contactRect).cgPath
-        cell.layer.shadowRadius = 10
-        cell.layer.shadowOpacity = 1
+        cell.billing = billingArray![indexPath.row]
+        cell.showPopUpViewDelegate = self
         return cell
     }
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(collectionCelllongTapped)))
-    }
-    
-    @objc fileprivate func collectionCelllongTapped(){
         
     }
+
 }
 
 //MARK:- Size for Cells

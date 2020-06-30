@@ -18,4 +18,3 @@ struct TransactionModel:Codable {
 typealias Billings = [BillingModel]?
 typealias Transactions = [TransactionModel]?
 
-typealias BanksElements = (Billings, Transactions)

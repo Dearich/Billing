@@ -61,8 +61,11 @@ extension BottomView: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! BottomTableViewCell
         //Тестовый вариант для прорверки
         guard transactions != nil else { return UITableViewCell() }
-        cell.transaction = transactions![indexPath.row]
+        cell.transaction = transactions![indexPath.row] 
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
