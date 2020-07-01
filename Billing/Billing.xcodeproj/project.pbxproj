@@ -23,6 +23,10 @@
 		151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */; };
 		151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */; };
 		151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD4024A92C17000B6103 /* TransactionModel.swift */; };
+		152B81DB24AC82A100720A42 /* CostomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152B81DA24AC82A100720A42 /* CostomAlert.swift */; };
+		15DDCA4324AA43B000CD8DF3 /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */; };
+		15DDCA4524AB86C500CD8DF3 /* VibrationExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */; };
+		15DDCA4724ABC16000CD8DF3 /* PlusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */; };
 		67B714C77D449D72AE427414 /* Pods_Billing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6C2B6686EAA885B769A117 /* Pods_Billing.framework */; };
 		79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406224A9F51500D214FB /* BottomTableViewCell.swift */; };
 		79D8406724A9F51500D214FB /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406324A9F51500D214FB /* BottomView.swift */; };
@@ -60,6 +64,10 @@
 		151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
 		151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInternetConnection.swift; sourceTree = "<group>"; };
 		151FCD4024A92C17000B6103 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		152B81DA24AC82A100720A42 /* CostomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostomAlert.swift; sourceTree = "<group>"; };
+		15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
+		15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationExtention.swift; sourceTree = "<group>"; };
+		15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusModel.swift; sourceTree = "<group>"; };
 		4469BE0C2AE5CB39F9686AB0 /* Pods-BillingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BillingTests.debug.xcconfig"; path = "Target Support Files/Pods-BillingTests/Pods-BillingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6620AD7114647D55D894C12A /* Pods-Billing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing.release.xcconfig"; path = "Target Support Files/Pods-Billing/Pods-Billing.release.xcconfig"; sourceTree = "<group>"; };
 		79D8406224A9F51500D214FB /* BottomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomTableViewCell.swift; sourceTree = "<group>"; };
@@ -115,10 +123,8 @@
 		151FCD0124A600F4000B6103 /* Billing */ = {
 			isa = PBXGroup;
 			children = (
-				151FCD3824A8CE6D000B6103 /* Model */,
 				151FCD2624A62FF7000B6103 /* Builder.swift */,
-				151FCD2A24A6307B000B6103 /* Presenter */,
-				151FCD2B24A6308C000B6103 /* View */,
+				15DDCA4824ABDF2300CD8DF3 /* MainModule */,
 				151FCD3024A63119000B6103 /* Services */,
 				151FCD3124A63D97000B6103 /* Delegate */,
 				151FCD0D24A600F8000B6103 /* LaunchScreen.storyboard */,
@@ -159,8 +165,11 @@
 		151FCD3024A63119000B6103 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */,
 				151FCD3B24A8D4C8000B6103 /* JSONHelper */,
 				151FCD3224A640AF000B6103 /* NetworkServices */,
+				15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */,
+				152B81DA24AC82A100720A42 /* CostomAlert.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -189,6 +198,7 @@
 			children = (
 				151FCD3924A8CE9C000B6103 /* BillingModel.swift */,
 				151FCD4024A92C17000B6103 /* TransactionModel.swift */,
+				15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,6 +209,16 @@
 				151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */,
 			);
 			path = JSONHelper;
+			sourceTree = "<group>";
+		};
+		15DDCA4824ABDF2300CD8DF3 /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				151FCD3824A8CE6D000B6103 /* Model */,
+				151FCD2A24A6307B000B6103 /* Presenter */,
+				151FCD2B24A6308C000B6103 /* View */,
+			);
+			path = MainModule;
 			sourceTree = "<group>";
 		};
 		3C746042198949A885388DD0 /* Frameworks */ = {
@@ -251,6 +271,7 @@
 				151FCCFC24A600F4000B6103 /* Frameworks */,
 				151FCCFD24A600F4000B6103 /* Resources */,
 				035619B00E225AD514EC3C66 /* [CP] Embed Pods Frameworks */,
+				15B60E0624AC8CB500DC41BD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -356,6 +377,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		15B60E0624AC8CB500DC41BD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
 		3212C8D7DD84EF7D96494D3D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,11 +448,14 @@
 				151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */,
 				151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */,
 				79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */,
+				15DDCA4524AB86C500CD8DF3 /* VibrationExtention.swift in Sources */,
 				79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */,
 				151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */,
 				151FCD0324A600F4000B6103 /* AppDelegate.swift in Sources */,
 				151FCD2524A62FDC000B6103 /* Presenter.swift in Sources */,
 				151FCD3724A753E5000B6103 /* RequestType.swift in Sources */,
+				15DDCA4724ABC16000CD8DF3 /* PlusModel.swift in Sources */,
+				15DDCA4324AA43B000CD8DF3 /* CosntraintService.swift in Sources */,
 				151FCD0524A600F4000B6103 /* SceneDelegate.swift in Sources */,
 				151FCD3524A6410F000B6103 /* GetClass.swift in Sources */,
 				79D8406C24A9F5C700D214FB /* HeaderView.swift in Sources */,
@@ -422,6 +463,7 @@
 				151FCD2724A62FF7000B6103 /* Builder.swift in Sources */,
 				151FCD2E24A630D0000B6103 /* BillingViewController.swift in Sources */,
 				151FCD3A24A8CE9C000B6103 /* BillingModel.swift in Sources */,
+				152B81DB24AC82A100720A42 /* CostomAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct TransactionModel:Codable {
+struct TransactionModel: Codable {
     let date: Int
     let icon: String
     let ownerID: Int
@@ -17,5 +17,3 @@ struct TransactionModel:Codable {
 
 typealias Billings = [BillingModel]?
 typealias Transactions = [TransactionModel]?
-
-typealias BanksElements = (Billings, Transactions)

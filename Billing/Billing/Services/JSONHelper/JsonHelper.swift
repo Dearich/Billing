@@ -10,7 +10,8 @@ import Foundation
 import Alamofire
 class JsonHelper {
     static let shared = JsonHelper()
-    func parse(requestType: Request, data:AFDataResponse<Any> , completion: @escaping (Billings, Transactions, Error?) -> Void) {
+
+    func parse(requestType: Request, data: AFDataResponse<Any>, completion: @escaping ([BillingModel]?, [TransactionModel]?, Error?) -> Void) {
         if data.error != nil {
             print(data.error!.localizedDescription)
             completion(nil, nil, data.error)
@@ -18,14 +19,14 @@ class JsonHelper {
             do {
                 guard let unwraptedData = data.data else {return}
                 switch requestType {
-                case .GetBilling:
-                    let decodedData = try JSONDecoder().decode(Billings.self, from: unwraptedData)
+                case .getBilling:
+                    let decodedData = try JSONDecoder().decode([BillingModel]?.self, from: unwraptedData)
                     completion(decodedData, nil, nil)
-                case .GetTransaction:
-                    let decodedData = try JSONDecoder().decode(Transactions.self, from: unwraptedData)
+                case .getTransaction:
+                    let decodedData = try JSONDecoder().decode([TransactionModel]?.self, from: unwraptedData)
                     completion(nil, decodedData, nil)
                 default:
-                    completion(nil, nil, nil)
+
                     return
                 }
             } catch {
