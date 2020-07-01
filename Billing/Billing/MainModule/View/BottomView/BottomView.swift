@@ -8,21 +8,29 @@
 
 import UIKit
 
-protocol ContentOffsetYDelegate: class {
-    func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
-}
-
 class BottomView: UIView {
 
-    var contentOffsetY: ContentOffsetYDelegate!
+    var contentOffsetY: ContentOffsetYProtocol!
     var transactions: [TransactionModel] = []
+
+    lazy var dataSource: ButtomDataSource = {
+        let dataSource = ButtomDataSource()
+        return dataSource
+    }()
 
     lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.delegate = self
-        view.dataSource = self
+        view.delegate = self.dataSource
+        view.dataSource = self.dataSource
         return view
+    }()
+
+    let addButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "add"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
 
     // MARK: - init tableView on SubView
@@ -34,45 +42,21 @@ class BottomView: UIView {
         addSubview(tableView)
         tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        tableView.addConstraintsWithFormat(format: "V:|-20-[v0]-|", views: tableView)
         self.clipsToBounds = true
         self.layer.cornerRadius = 25
         self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
+        tableView.allowsSelection = false
+        tableView.tableFooterView = UIView()
+        addSubview(addButton)
+        addButton.addConstraintsWithFormat(format: "V:|-[v0(35)]", views: addButton)
+        addButton.addConstraintsWithFormat(format: "H:[v0(35)]-|", views: addButton)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-}
-
-// MARK: - TableViewDelegate and TableViewDataSource
-
-extension BottomView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as? BottomTableViewCell else { return UITableViewCell() }
-        //Тестовый вариант для прорверки
-        cell.transaction = transactions[indexPath.row]
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        contentOffsetY.headerAnimation(contentOffsetY: scrollView.contentOffset.y) { (contentOffset) in
-            scrollView.contentOffset.y = contentOffset
-        }  // для анимации хедера
     }
 
 }

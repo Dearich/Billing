@@ -14,7 +14,7 @@ protocol ShowPopUpViewProtocol: class {
 
 class HeaderCollectionViewCell: UICollectionViewCell {
 
-    var billing: Any!
+    var billing: Any?
     weak var showPopUpViewDelegate: ShowPopUpViewProtocol?
     let balanceLabel: UILabel = {
        let label = UILabel()
