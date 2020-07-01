@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct BillingModel:Codable {
+struct BillingModel: Codable {
 
     let balance: String
     let date: Int

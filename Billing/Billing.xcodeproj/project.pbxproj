@@ -23,6 +23,7 @@
 		151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */; };
 		151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */; };
 		151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151FCD4024A92C17000B6103 /* TransactionModel.swift */; };
+		152B81DB24AC82A100720A42 /* CostomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152B81DA24AC82A100720A42 /* CostomAlert.swift */; };
 		15DDCA4324AA43B000CD8DF3 /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */; };
 		15DDCA4524AB86C500CD8DF3 /* VibrationExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */; };
 		15DDCA4724ABC16000CD8DF3 /* PlusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */; };
@@ -63,6 +64,7 @@
 		151FCD3C24A8D4EE000B6103 /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
 		151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInternetConnection.swift; sourceTree = "<group>"; };
 		151FCD4024A92C17000B6103 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		152B81DA24AC82A100720A42 /* CostomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostomAlert.swift; sourceTree = "<group>"; };
 		15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
 		15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationExtention.swift; sourceTree = "<group>"; };
 		15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusModel.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				151FCD3B24A8D4C8000B6103 /* JSONHelper */,
 				151FCD3224A640AF000B6103 /* NetworkServices */,
 				15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */,
+				152B81DA24AC82A100720A42 /* CostomAlert.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				151FCCFC24A600F4000B6103 /* Frameworks */,
 				151FCCFD24A600F4000B6103 /* Resources */,
 				035619B00E225AD514EC3C66 /* [CP] Embed Pods Frameworks */,
+				15B60E0624AC8CB500DC41BD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -373,6 +377,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		15B60E0624AC8CB500DC41BD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
 		3212C8D7DD84EF7D96494D3D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -442,6 +463,7 @@
 				151FCD2724A62FF7000B6103 /* Builder.swift in Sources */,
 				151FCD2E24A630D0000B6103 /* BillingViewController.swift in Sources */,
 				151FCD3A24A8CE9C000B6103 /* BillingModel.swift in Sources */,
+				152B81DB24AC82A100720A42 /* CostomAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

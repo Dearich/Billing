@@ -9,9 +9,9 @@
 import UIKit
 
 class BottomTableViewCell: UITableViewCell {
-    
+
     var transaction: Any!
-    
+
     let imageCategory: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class BottomTableViewCell: UITableViewCell {
           label.font = .systemFont(ofSize: 12, weight: .medium)
           return label
       }()
-    
+
     let costLabel: UILabel = {
           let label = UILabel()
           label.translatesAutoresizingMaskIntoConstraints = false
@@ -42,14 +42,12 @@ class BottomTableViewCell: UITableViewCell {
           label.font = .systemFont(ofSize: 18, weight: .medium)
           return label
       }()
-    
-    
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         addSubview(imageCategory)
         if transaction is TransactionModel {
-            let trans = transaction as! TransactionModel
+            guard let trans = transaction as? TransactionModel else { return }
             imageCategory.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
             imageCategory.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             imageCategory.heightAnchor.constraint(equalToConstant: bounds.height / 1.5).isActive = true
@@ -67,16 +65,14 @@ class BottomTableViewCell: UITableViewCell {
             addSubview(dateLabel)
             dateLabel.leftAnchor.constraint(equalTo: imageCategory.rightAnchor, constant: 20).isActive = true
             dateLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 10).isActive = true
-            
-            
+
                 let date = Date(timeIntervalSince1970: Double(trans.date))
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeZone = TimeZone.current
                 dateFormatter.locale = NSLocale.current
                 dateFormatter.dateFormat = "dd MMMM yyyy, HH:mm"
                 let localDate = dateFormatter.string(from: date)
-            
-            
+
             dateLabel.text = "\(localDate)"
 
             addSubview(costLabel)
@@ -85,11 +81,10 @@ class BottomTableViewCell: UITableViewCell {
             costLabel.text = "\(trans.sum)"
         }
     }
-    
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
     }
-    
+
 }

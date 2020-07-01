@@ -14,15 +14,15 @@ protocol ShowPopUpViewProtocol: class {
 
 class HeaderCollectionViewCell: UICollectionViewCell {
 
-    var billing:Any!
-   weak var showPopUpViewDelegate: ShowPopUpViewProtocol?
+    var billing: Any!
+    weak var showPopUpViewDelegate: ShowPopUpViewProtocol?
     let balanceLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = #colorLiteral(red: 0.9568627451, green: 0.9647058824, blue: 1, alpha: 1)
         label.numberOfLines = 2
         label.font = .systemFont(ofSize: 16, weight: .bold)
- 
+
         return label
     }()
 
@@ -34,8 +34,8 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
-    
-    let addButton:UIButton = {
+
+    let addButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "add"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -51,13 +51,16 @@ class HeaderCollectionViewCell: UICollectionViewCell {
 
          //shadow
         let shadowSize: CGFloat = 7
-        let contactRect = CGRect(x: -shadowSize, y: contentView.bounds.height - (shadowSize * 0.4), width: contentView.bounds.width + shadowSize * 2, height: shadowSize)
+        let contactRect = CGRect(x: -shadowSize,
+            y: contentView.bounds.height - (shadowSize * 0.4),
+            width: contentView.bounds.width + shadowSize * 2,
+            height: shadowSize)
             contentView.layer.shadowPath = UIBezierPath(ovalIn: contactRect).cgPath
             contentView.layer.shadowRadius = 10
             contentView.layer.shadowOpacity = 1
-        
+
         if billing is BillingModel {
-            let bill = billing as! BillingModel
+            guard let bill = billing as? BillingModel else { return }
 
             addSubview(balanceLabel)
             balanceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10).isActive = true
@@ -71,9 +74,9 @@ class HeaderCollectionViewCell: UICollectionViewCell {
             ownerLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
             ownerLabel.text = bill.owner
 
-        } else  {
+        } else {
             addSubview(addButton)
-            
+
             addButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             addButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)

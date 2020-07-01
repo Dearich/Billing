@@ -21,14 +21,14 @@ class BillingViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     lazy var bottomView: BottomView = {
         let view = BottomView()
         view.contentOffsetY = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .light)
         let view = UIVisualEffectView(effect: blurEffect)
@@ -38,14 +38,14 @@ class BillingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.getBillings()
+        presenter.getData()
         progressView.layer.masksToBounds = true
         progressView.layer.cornerRadius = 5
         setUpNavigationBar()
         headerView.headerViewDelegate = self
         print("viewDidLoad Finish")
     }
-    
+
     func animationAddView() {
         /*TODO: 1)добавить view для добавления новых billing
                 2) отрабоать исчезновение blur эффетка
@@ -53,9 +53,9 @@ class BillingViewController: UIViewController {
                 4) Получать новый список с сервера
                 4) Обновлять collection
          */
-        //addBlurEffect()
+//        addBlurEffect()
     }
-    
+
     private func addBlurEffect() {
         view.addSubview(visualEffectView)
         visualEffectView.alpha = 0
@@ -63,13 +63,13 @@ class BillingViewController: UIViewController {
         visualEffectView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        
+
         UIView.animate(withDuration: 0.5) {
             self.visualEffectView.alpha = 1
         }
     }
 
-    private func showBillings(){
+    private func showBillings() {
         view.addSubview(headerView)
         headerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         headerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -87,14 +87,14 @@ class BillingViewController: UIViewController {
         bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         bottomView.layer.masksToBounds = true
     }
-    
+
     private func setUpNavigationBar() {
         navigationController?.navigationBar.isHidden = true
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
 
-    func setUpHeaderView(billingArray: Billings) {
+    func setUpHeaderView(billingArray: [BillingModel]) {
         DispatchQueue.main.async {
             self.showBillings()
             let plus = PlusModel()
@@ -103,7 +103,7 @@ class BillingViewController: UIViewController {
         }
     }
 
-    func setUpBottomView(transactionArray: Transactions){
+    func setUpBottomView(transactionArray: [TransactionModel]) {
         DispatchQueue.main.async {
             self.bottomView.transactions = transactionArray
             self.bottomView.tableView.reloadData()
@@ -111,7 +111,7 @@ class BillingViewController: UIViewController {
     }
 
     @IBAction func doneButton(_ sender: UIButton) {
-         
+
     }
 }
 
@@ -119,11 +119,10 @@ extension BillingViewController: HeaderViewProtocol {
     func showPopUpView() {
         animationAddView()
     }
-    
-    
+
 }
 
-extension BillingViewController: ContentOffsetYDelegate{
+extension BillingViewController: ContentOffsetYDelegate {
 
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void)) {
         let minHight = presenter.statusBarHeight + 30

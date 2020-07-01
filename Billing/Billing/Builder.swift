@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ModuleBuilderProtocol{
+protocol ModuleBuilderProtocol {
     static func createMain() -> UIViewController
 }
 

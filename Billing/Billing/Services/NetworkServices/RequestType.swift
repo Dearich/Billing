@@ -9,11 +9,11 @@
 import Foundation
 
 enum Request: String {
-    case GetBilling = "https://bankaccounts-andersen.herokuapp.com/allBilling"
-    case PostBilling = "https://bankaccounts-andersen.herokuapp.com/newBilling"
-    case DeleteBilling = "https://bankaccounts-andersen.herokuapp.com/billing"
-    
-    case GetTransaction = "https://bankaccounts-andersen.herokuapp.com/allTransaction"
-    case PostTransaction = "https://bankaccounts-andersen.herokuapp.com/newTransaction"
-    case DeleteTransaction = "https://bankaccounts-andersen.herokuapp.com/transaction"
+    case getBilling = "https://bankaccounts-andersen.herokuapp.com/allBilling"
+    case postBilling = "https://bankaccounts-andersen.herokuapp.com/newBilling"
+    case deleteBilling = "https://bankaccounts-andersen.herokuapp.com/billing"
+
+    case getTransaction = "https://bankaccounts-andersen.herokuapp.com/allTransaction"
+    case postTransaction = "https://bankaccounts-andersen.herokuapp.com/newTransaction"
+    case deleteTransaction = "https://bankaccounts-andersen.herokuapp.com/transaction"
 }

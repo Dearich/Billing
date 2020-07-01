@@ -8,29 +8,29 @@
 
 import UIKit
 
-protocol ContentOffsetYDelegate {
+protocol ContentOffsetYDelegate: class {
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
 }
 
 class BottomView: UIView {
-    
+
     var contentOffsetY: ContentOffsetYDelegate!
-    var transactions: Transactions!
-    
-    lazy var tableView:UITableView = {
+    var transactions: [TransactionModel] = []
+
+    lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.delegate = self
         view.dataSource = self
         return view
     }()
-    
-    //MARK:-init tableView on SubView
+
+    // MARK: - init tableView on SubView
     override init(frame: CGRect) {
         super.init(frame: frame)
         tableView.register(BottomTableViewCell.self, forCellReuseIdentifier: "TableCell")
         backgroundColor = .white
-        
+
         addSubview(tableView)
         tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
@@ -42,26 +42,24 @@ class BottomView: UIView {
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }
 
-//MARK:-TableViewDelegate and TableViewDataSource
+// MARK: - TableViewDelegate and TableViewDataSource
 
-extension BottomView: UITableViewDelegate, UITableViewDataSource{
+extension BottomView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard transactions != nil else {return 0}
-        return transactions!.count
+        return transactions.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! BottomTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as? BottomTableViewCell else { return UITableViewCell() }
         //Тестовый вариант для прорверки
-        guard transactions != nil else { return UITableViewCell() }
-        cell.transaction = transactions![indexPath.row] 
+        cell.transaction = transactions[indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -70,13 +68,11 @@ extension BottomView: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         contentOffsetY.headerAnimation(contentOffsetY: scrollView.contentOffset.y) { (contentOffset) in
             scrollView.contentOffset.y = contentOffset
         }  // для анимации хедера
     }
-    
-    
+
 }
