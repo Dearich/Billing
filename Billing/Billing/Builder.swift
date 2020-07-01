@@ -9,17 +9,15 @@
 import Foundation
 import UIKit
 
-protocol ModuleBuilderProtocol{
+protocol ModuleBuilderProtocol {
     static func createMain() -> UIViewController
 }
 
 class ModuleBuilder {
-    
     static func createMain() -> UIViewController {
         let view = BillingViewController()
-//        создаем презентерт тоже тут 
-//        let billingViewController = .....
-//        view.mainPresenter = billingViewController
+        let presenter = Presenter(view: view)
+        view.presenter = presenter
         return view
     }
 }
