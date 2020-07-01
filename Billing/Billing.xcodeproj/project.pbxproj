@@ -28,6 +28,8 @@
 		79D8406724A9F51500D214FB /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406324A9F51500D214FB /* BottomView.swift */; };
 		79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */; };
 		79D8406C24A9F5C700D214FB /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406A24A9F5C700D214FB /* HeaderView.swift */; };
+		79DEED4C24AC5B800069F013 /* DeleteClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DEED4B24AC5B800069F013 /* DeleteClass.swift */; };
+		79DEED4E24AC64C70069F013 /* PostClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DEED4D24AC64C70069F013 /* PostClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		79D8406324A9F51500D214FB /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		79D8406A24A9F5C700D214FB /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		79DEED4B24AC5B800069F013 /* DeleteClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteClass.swift; sourceTree = "<group>"; };
+		79DEED4D24AC64C70069F013 /* PostClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClass.swift; sourceTree = "<group>"; };
 		8E6C2B6686EAA885B769A117 /* Pods_Billing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Billing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00DFC7F07D3507D9C7BF8D8 /* Pods-Billing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing.debug.xcconfig"; path = "Target Support Files/Pods-Billing/Pods-Billing.debug.xcconfig"; sourceTree = "<group>"; };
 		D56DF0C01EE32B3A08DC77F5 /* Pods_BillingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BillingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 			children = (
 				151FCD3624A753E5000B6103 /* RequestType.swift */,
 				151FCD3424A6410F000B6103 /* GetClass.swift */,
+				79DEED4B24AC5B800069F013 /* DeleteClass.swift */,
+				79DEED4D24AC64C70069F013 /* PostClass.swift */,
 				151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */,
 			);
 			path = NetworkServices;
@@ -407,11 +413,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79DEED4E24AC64C70069F013 /* PostClass.swift in Sources */,
 				151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */,
 				151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */,
 				79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */,
 				79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */,
 				151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */,
+				79DEED4C24AC5B800069F013 /* DeleteClass.swift in Sources */,
 				151FCD0324A600F4000B6103 /* AppDelegate.swift in Sources */,
 				151FCD2524A62FDC000B6103 /* Presenter.swift in Sources */,
 				151FCD3724A753E5000B6103 /* RequestType.swift in Sources */,
@@ -575,7 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QS4Z3MJ49V;
+				DEVELOPMENT_TEAM = T5TD98UB89;
 				INFOPLIST_FILE = Billing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -595,7 +603,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QS4Z3MJ49V;
+				DEVELOPMENT_TEAM = T5TD98UB89;
 				INFOPLIST_FILE = Billing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

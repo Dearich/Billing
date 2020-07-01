@@ -24,6 +24,7 @@ class JsonHelper {
                 case .GetTransaction:
                     let decodedData = try JSONDecoder().decode(Transactions.self, from: unwraptedData)
                     completion(nil, decodedData, nil)
+                    debugPrint(completion)
                 default:
                     completion(nil, nil, nil)
                     return

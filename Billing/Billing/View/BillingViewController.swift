@@ -9,6 +9,7 @@
 import UIKit
 
 class BillingViewController: UIViewController {
+//    let delete = DeleteClass(objectForDelete: Bil)
     
     let headerView: HeaderView = {
         let view = HeaderView()
@@ -25,6 +26,8 @@ class BillingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
         showSubviews()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
