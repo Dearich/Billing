@@ -51,7 +51,8 @@ class HeaderView: UIView {
 
         switch gesture.state {
         case .began:
-            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { return }
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView))
+            else { return }
 
         case .ended:
 

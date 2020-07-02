@@ -36,6 +36,12 @@ class BillingViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    let subView : NewBillingView = {
+        let subView = NewBillingView()
+        subView.view.backgroundColor = .clear
+        return subView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,19 +51,28 @@ class BillingViewController: UIViewController {
         setUpNavigationBar()
         headerView.headerViewDelegate = self
         bottomView.dataSource.contentOffsetYDelegate = self
+        subView.newBillingViewDelegate = self
         print("viewDidLoad Finish")
     }
 
     func animationAddView() {
-
-        /*TODO: 1)добавить view для добавления новых billing
-                2) отрабоать исчезновение blur эффетка
-                3) Создать класс сохранения и вызывать метод после закрытия окна
+        
+        /*TODO:
                 4) Получать новый список с сервера
-                4) Обновлять collection
+                5) Обновлять collection
          */
-//        addBlurEffect()
-
+        addBlurEffect()
+        self.addChild(subView)
+        subView.view.frame = self.view.frame  // 3
+        self.view.addSubview(subView.view) // 4
+        subView.didMove(toParent: self)
+        subView.becomeFirstResponder()
+//        subView.view.moveIn(view: subView.view, scaleX: 0.6, scaleY: 0.6)
+        subView.view.alpha = 0.0
+        UIView.animate(withDuration: 0.2) {
+            self.subView.view.alpha = 1.0
+        }
+        
     }
 
     private func addBlurEffect() {
@@ -113,6 +128,23 @@ class BillingViewController: UIViewController {
             self.bottomView.dataSource.transactions = transactionArray
             self.bottomView.tableView.reloadData()
         }
+    }
+}
+
+extension BillingViewController: NewBillingViewCloseProtocol {
+    func close() {    
+        UIView.animate(withDuration: 0.3, animations: {
+            self.visualEffectView.alpha = 0
+            self.subView.view.alpha = 0
+        })
+        { [weak self] (done) in
+            if done {
+                self?.visualEffectView.removeFromSuperview()
+                self?.subView.view.removeFromSuperview()
+            }
+            
+        }
+        
     }
 }
 

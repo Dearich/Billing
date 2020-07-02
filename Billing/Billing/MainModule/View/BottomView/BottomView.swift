@@ -53,10 +53,18 @@ class BottomView: UIView {
         addSubview(addButton)
         addButton.addConstraintsWithFormat(format: "V:|-[v0(35)]", views: addButton)
         addButton.addConstraintsWithFormat(format: "H:[v0(35)]-|", views: addButton)
+        addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc func addTapped(_ sender: UIButton) {
+        if sender == addButton {
+            print("addTapped")
+           
+        }
     }
 
 }
