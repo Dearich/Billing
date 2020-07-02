@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Alamofire
 
 class BillingViewController: UIViewController {
 
@@ -43,10 +44,12 @@ class BillingViewController: UIViewController {
         progressView.layer.cornerRadius = 5
         setUpNavigationBar()
         headerView.headerViewDelegate = self
+        bottomView.dataSource.contentOffsetYDelegate = self
         print("viewDidLoad Finish")
     }
 
     func animationAddView() {
+
         /*TODO: 1)добавить view для добавления новых billing
                 2) отрабоать исчезновение blur эффетка
                 3) Создать класс сохранения и вызывать метод после закрытия окна
@@ -54,6 +57,7 @@ class BillingViewController: UIViewController {
                 4) Обновлять collection
          */
 //        addBlurEffect()
+
     }
 
     private func addBlurEffect() {
@@ -98,20 +102,17 @@ class BillingViewController: UIViewController {
         DispatchQueue.main.async {
             self.showBillings()
             let plus = PlusModel()
-            self.headerView.billingArray = billingArray
-            self.headerView.billingArray.append(plus)
+            var billingArray: [Any] = billingArray
+            billingArray.append(plus)
+            self.headerView.dataSource.billingArray = billingArray
         }
     }
 
     func setUpBottomView(transactionArray: [TransactionModel]) {
         DispatchQueue.main.async {
-            self.bottomView.transactions = transactionArray
+            self.bottomView.dataSource.transactions = transactionArray
             self.bottomView.tableView.reloadData()
         }
-    }
-
-    @IBAction func doneButton(_ sender: UIButton) {
-
     }
 }
 
@@ -119,10 +120,9 @@ extension BillingViewController: HeaderViewProtocol {
     func showPopUpView() {
         animationAddView()
     }
-
 }
 
-extension BillingViewController: ContentOffsetYDelegate {
+extension BillingViewController: ContentOffsetYProtocol {
 
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void)) {
         let minHight = presenter.statusBarHeight + 30

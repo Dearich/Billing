@@ -12,26 +12,32 @@ protocol HeaderViewProtocol: class {
     func showPopUpView()
 }
 
-class HeaderView: UIView, ShowPopUpViewProtocol {
+class HeaderView: UIView {
 
-    var billingArray: [Any] = []
     weak var headerViewDelegate: HeaderViewProtocol?
+
+    lazy var dataSource: HeaderDataSource = {
+        let dataSource = HeaderDataSource()
+        return dataSource
+    }()
 
     lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        view.dataSource = self
-        view.delegate = self
+        view.dataSource = self.dataSource
+        view.delegate = self.dataSource
         view.translatesAutoresizingMaskIntoConstraints = false
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         return view
     }()
+
     var longPressGesture: UILongPressGestureRecognizer!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        dataSource.headerDataSourceDelegate = self
         flowLayout()
         addSubview(collectionView)
         collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -55,10 +61,6 @@ class HeaderView: UIView, ShowPopUpViewProtocol {
         }
     }
 
-    func animationAddView() {
-          headerViewDelegate?.showPopUpView()
-    }
-
     // MARK: - Padding and ScrollDirection in CV
     fileprivate func flowLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -74,31 +76,8 @@ class HeaderView: UIView, ShowPopUpViewProtocol {
     }
 }
 
-// MARK: - CollectionViewDataSource and CollectionViewDelegate
-
-extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        return billingArray.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HeaderCollectionViewCell else { return UICollectionViewCell() }
-        cell.billing = billingArray[indexPath.row]
-        cell.showPopUpViewDelegate = self
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    }
-
-}
-
-// MARK: - Size for Cells
-extension HeaderView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 170.0, height: collectionView.frame.height * 0.7)
+extension HeaderView:HeaderDataSourceProtocol {
+    func shouldStartAnimation() {
+        headerViewDelegate?.showPopUpView()
     }
 }
