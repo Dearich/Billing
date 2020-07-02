@@ -82,12 +82,15 @@ class BottomTableViewCell: UITableViewCell {
             costLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
             costLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             costLabel.text = "\(trans.sum)"
-        } else {
-            //другой вид ячейки
         }
     }
     override func prepareForReuse() {
-
+        super.prepareForReuse()
+        imageCategory.image = nil
+        categoryLabel.text = nil
+        dateLabel.text = nil
+        costLabel.text = nil
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

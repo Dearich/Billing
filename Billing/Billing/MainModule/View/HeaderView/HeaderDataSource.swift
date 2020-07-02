@@ -14,15 +14,14 @@ protocol HeaderDataSourceProtocol:class {
 }
 
 class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
-
+    
     var billingArray: [Any] = []
     weak var headerDataSourceDelegate: HeaderDataSourceProtocol?
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        print("HeaderDataSource")
         return billingArray.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HeaderCollectionViewCell
@@ -32,9 +31,6 @@ class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDe
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    }
 }
 
 // MARK: - Size for Cells
@@ -49,5 +45,5 @@ extension HeaderDataSource: ShowPopUpViewProtocol {
     func animationAddView() {
         headerDataSourceDelegate?.shouldStartAnimation()
     }
-
+    
 }
