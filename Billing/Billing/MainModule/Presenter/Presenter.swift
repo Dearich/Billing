@@ -31,6 +31,7 @@ class Presenter: PresenterProtocol {
         let disposeBag = DisposeBag()
         setUpProgressView()
         guard let view  = view as? BillingViewController else { return }
+        view.subView.addNewBillingDelegate = self
         getClass.chooseRequest(with: .getBilling) {(response) in
 
             if response is [BillingModel] {
@@ -78,4 +79,21 @@ class Presenter: PresenterProtocol {
         }
     }
 
+}
+
+extension Presenter:AddNewBillingProtocol {
+    func addNewBillingAndUpdate(balance: String, complition: @escaping ((Bool) -> Void)) {
+        let timestamp = Date().timeIntervalSince1970
+        let ownerID = 1
+        let savingObj = NewBilling(balance: balance, date: Int(timestamp), ownerID: ownerID)
+        let post = PostClass(savingObject: savingObj)
+        post.chooseRequest(with: .postBilling) {[weak self] (response) in
+            if response == nil {
+                complition(false)
+            }
+            complition(true)
+            self?.getData()
+        }
+       
+    }
 }

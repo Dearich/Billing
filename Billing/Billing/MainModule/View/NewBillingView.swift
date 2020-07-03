@@ -11,6 +11,9 @@ import UIKit
 protocol NewBillingViewCloseProtocol:class {
     func close()
 }
+protocol AddNewBillingProtocol:class {
+    func addNewBillingAndUpdate(balance:String, complition: @escaping ((Bool) -> Void))
+}
 
 class NewBillingView: UIViewController {
 
@@ -58,13 +61,14 @@ class NewBillingView: UIViewController {
     }()
 
     weak var newBillingViewDelegate: NewBillingViewCloseProtocol?
+    weak var addNewBillingDelegate: AddNewBillingProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(closeButton)
         closeButton.addConstraintsWithFormat(format: "V:|-[v0(30)]", views: closeButton)
         closeButton.addConstraintsWithFormat(format: "H:[v0(30)]-|", views: closeButton)
-        closeButton.addTarget(self, action: #selector(closeTapped(_:)), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
 
         view.addSubview(subView)
         subView.addConstraintsWithFormat(format: "V:|-150-[v0(210)]", views: subView)
@@ -81,9 +85,28 @@ class NewBillingView: UIViewController {
         doneButton.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: doneButton)
         topLabel.addConstraintsWithFormat(format: "V:|-20-[v0(50)]-20-[v1(40)]-20-[v2(40)]-20-|",
                                           views: topLabel, balanceTextField,doneButton)
+        doneButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
     }
 
-    @objc private func closeTapped(_ sender: UIButton) {
-        newBillingViewDelegate?.close()
+    @objc private func buttonTapped(_ sender: UIButton) {
+        if sender == closeButton {
+            newBillingViewDelegate?.close()
+        } else if sender == doneButton {
+            guard let text = balanceTextField.text, !text.isEmpty else {
+                _ = UIAlertController(alertType: .emptyField, or: self)
+                return
+            }
+            addNewBillingDelegate?.addNewBillingAndUpdate(balance: text, complition: {[weak self] (bool) in
+                if bool {
+                    DispatchQueue.main.async {
+                        self?.newBillingViewDelegate?.close()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        _ = UIAlertController(alertType: .gotError, or: self)
+                    }
+                }
+            })
+        }
     }
 }

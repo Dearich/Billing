@@ -63,16 +63,14 @@ class BillingViewController: UIViewController {
          */
         addBlurEffect()
         self.addChild(subView)
-        subView.view.frame = self.view.frame  // 3
-        self.view.addSubview(subView.view) // 4
+        subView.view.frame = self.view.frame
+        self.view.addSubview(subView.view)
         subView.didMove(toParent: self)
         subView.becomeFirstResponder()
-//        subView.view.moveIn(view: subView.view, scaleX: 0.6, scaleY: 0.6)
         subView.view.alpha = 0.0
         UIView.animate(withDuration: 0.2) {
             self.subView.view.alpha = 1.0
         }
-        
     }
 
     private func addBlurEffect() {
@@ -93,7 +91,7 @@ class BillingViewController: UIViewController {
         headerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         headerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        let heightConstraint = headerView.heightAnchor.constraint(equalToConstant: (view.frame.height / 4))
+        let heightConstraint = headerView.heightAnchor.constraint(equalToConstant: (view.frame.height / 3.9))
         self.heightConstraint = heightConstraint
         self.heightConstraint.isActive = true
         showTransactions()
@@ -120,6 +118,7 @@ class BillingViewController: UIViewController {
             var billingArray: [Any] = billingArray
             billingArray.append(plus)
             self.headerView.dataSource.billingArray = billingArray
+            self.headerView.control.numberOfPages = billingArray.count
         }
     }
 
@@ -132,19 +131,18 @@ class BillingViewController: UIViewController {
 }
 
 extension BillingViewController: NewBillingViewCloseProtocol {
-    func close() {    
+    func close() {
         UIView.animate(withDuration: 0.3, animations: {
             self.visualEffectView.alpha = 0
             self.subView.view.alpha = 0
         })
         { [weak self] (done) in
             if done {
+                self?.headerView.collectionView.reloadData()
                 self?.visualEffectView.removeFromSuperview()
                 self?.subView.view.removeFromSuperview()
             }
-            
         }
-        
     }
 }
 
@@ -182,7 +180,7 @@ extension BillingViewController: ContentOffsetYProtocol {
         let dinamicAlpha = ((self.heightConstraint.constant - presenter.headerViewMaxHeight) / minHight) + 1
 
         UIView.animate(withDuration: 0.25) {
-            self.headerView.collectionView.alpha = dinamicAlpha
+//            self.headerView.collectionView.alpha = dinamicAlpha
         }
     }
 

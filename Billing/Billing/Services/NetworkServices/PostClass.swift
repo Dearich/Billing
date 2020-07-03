@@ -42,7 +42,7 @@ class PostClass: NetworkSupportProtocol {
                         compliton(response)
                     }
                     if error != nil {
-                        print(error?.localizedDescription)
+                        compliton(nil)
                     }
                 }.resume()
 
@@ -61,7 +61,10 @@ class PostClass: NetworkSupportProtocol {
                 AF.request(request.rawValue,method: .post,
                            parameters: parameters,
                            headers:headers).response { (response) in
-                    compliton(response)
+                            if response.error != nil {
+                                compliton(nil)
+                            }
+                            compliton(response)
                 }
             }
         default:
