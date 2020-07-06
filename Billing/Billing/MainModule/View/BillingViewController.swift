@@ -36,6 +36,12 @@ class BillingViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    let subView : NewBillingView = {
+        let subView = NewBillingView()
+        subView.view.backgroundColor = .clear
+        return subView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,19 +51,26 @@ class BillingViewController: UIViewController {
         setUpNavigationBar()
         headerView.headerViewDelegate = self
         bottomView.dataSource.contentOffsetYDelegate = self
+        subView.newBillingViewDelegate = self
         print("viewDidLoad Finish")
     }
 
     func animationAddView() {
-
-        /*TODO: 1)добавить view для добавления новых billing
-                2) отрабоать исчезновение blur эффетка
-                3) Создать класс сохранения и вызывать метод после закрытия окна
+        
+        /*TODO:
                 4) Получать новый список с сервера
-                4) Обновлять collection
+                5) Обновлять collection
          */
-//        addBlurEffect()
-
+        addBlurEffect()
+        self.addChild(subView)
+        subView.view.frame = self.view.frame
+        self.view.addSubview(subView.view)
+        subView.didMove(toParent: self)
+        subView.becomeFirstResponder()
+        subView.view.alpha = 0.0
+        UIView.animate(withDuration: 0.2) {
+            self.subView.view.alpha = 1.0
+        }
     }
 
     private func addBlurEffect() {
@@ -78,7 +91,7 @@ class BillingViewController: UIViewController {
         headerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         headerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        let heightConstraint = headerView.heightAnchor.constraint(equalToConstant: (view.frame.height / 4))
+        let heightConstraint = headerView.heightAnchor.constraint(equalToConstant: (view.frame.height / 3.9))
         self.heightConstraint = heightConstraint
         self.heightConstraint.isActive = true
         showTransactions()
@@ -105,6 +118,7 @@ class BillingViewController: UIViewController {
             var billingArray: [Any] = billingArray
             billingArray.append(plus)
             self.headerView.dataSource.billingArray = billingArray
+            self.headerView.control.numberOfPages = billingArray.count
         }
     }
 
@@ -112,6 +126,22 @@ class BillingViewController: UIViewController {
         DispatchQueue.main.async {
             self.bottomView.dataSource.transactions = transactionArray
             self.bottomView.tableView.reloadData()
+        }
+    }
+}
+
+extension BillingViewController: NewBillingViewCloseProtocol {
+    func close() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.visualEffectView.alpha = 0
+            self.subView.view.alpha = 0
+        })
+        { [weak self] (done) in
+            if done {
+                self?.headerView.collectionView.reloadData()
+                self?.visualEffectView.removeFromSuperview()
+                self?.subView.view.removeFromSuperview()
+            }
         }
     }
 }
@@ -150,7 +180,7 @@ extension BillingViewController: ContentOffsetYProtocol {
         let dinamicAlpha = ((self.heightConstraint.constant - presenter.headerViewMaxHeight) / minHight) + 1
 
         UIView.animate(withDuration: 0.25) {
-            self.headerView.collectionView.alpha = dinamicAlpha
+//            self.headerView.collectionView.alpha = dinamicAlpha
         }
     }
 

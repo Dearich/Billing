@@ -11,7 +11,8 @@ import Alamofire
 class JsonHelper {
     static let shared = JsonHelper()
 
-    func parse(requestType: Request, data: AFDataResponse<Any>, completion: @escaping ([BillingModel]?, [TransactionModel]?, Error?) -> Void) {
+    func parse(requestType: Request, data: AFDataResponse<Any>,
+               completion: @escaping ([BillingModel]?, [TransactionModel]?, Error?) -> Void) {
         if data.error != nil {
             print(data.error!.localizedDescription)
             completion(nil, nil, data.error)

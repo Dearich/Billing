@@ -27,8 +27,6 @@ struct BillingModel: Codable {
 
         return ["balance" :  balance,
                 "date"    :  date,
-                "id"      :  id,
-                "owner"   :  owner,
                 "ownerID" :  ownerID]
     }
 }
