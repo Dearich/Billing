@@ -9,10 +9,7 @@
 import Foundation
 import Alamofire
 
-class PostClass:NetworkSupportProtocol{
+class PostClass:NetworkSupportProtocol {
     func chooseRequest(with request: Request, compliton: @escaping (Any?) -> Void) {
-        
     }
-    
-    
 }

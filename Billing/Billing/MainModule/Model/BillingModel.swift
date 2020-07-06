@@ -14,5 +14,11 @@ struct BillingModel: Codable {
     let id: Int
     let owner: String
     let ownerID: Int
-
+    init(balance:String, date:Int, id:Int, owner:String, ownerID:Int) {
+        self.balance = balance
+        self.id = id
+        self.date = date
+        self.owner = owner
+        self.ownerID = ownerID
+    }
 }

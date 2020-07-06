@@ -9,55 +9,56 @@
 import Foundation
 import Alamofire
 
-class DeleteClass{
-    
-    var objectForDelete: Any
-    
+protocol ObjectForDeleteProtocol: class {
+    func deleteObject(_ object: Any, complition: @escaping(_ done: Bool) -> Void)
+}
+
+class DeleteClass: NetworkSupportProtocol {
+    var objectForDelete: Any?
     init(objectForDelete: Any) {
         self.objectForDelete = objectForDelete
     }
-    
-    
     func chooseRequest(with request: Request, compliton: @escaping (Any?) -> Void) {
         switch request {
-        case .DeleteBilling:
-            if objectForDelete is BillingModel{
-                AF.request(request.rawValue, method: .delete).response { (responce) in
-                    guard responce.error == nil else {
-                        print("error with Billing DELETE")
-                        if let error = responce.error {
-                            print("Error: \(error)")
-                            compliton(false)
-                        }
-                        return
+// MARK: - Delete Billings
+        case .deleteBilling:
+            if objectForDelete is BillingModel {
+                guard let billing = objectForDelete as? BillingModel else {return}
+                let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+                let params = ["id": billing.id]
+                AF.request(request.rawValue, method: .delete,
+                                             parameters: params,
+                                             headers: headers)
+                                                    .response { (response) in
+                    if response.error != nil {
+                        compliton(nil)
                     }
-                    print("Billing deleted")
+                    print("ObjectDeleted")
                     compliton(true)
+                    compliton(response)
                 }
-            }else{
+            } else {
                 compliton(false)
             }
-            
-            
-            
-        case .DeleteTransaction:
-            if objectForDelete is TransactionModel{
-                AF.request(request.rawValue, method: .delete).response { (responce) in
-                    guard responce.error == nil else {
-                        print("error with Transaction DELETE ")
-                        if let error = responce.error {
-                            print("Error: \(error)")
-                            compliton(false)
-                        }
-                        return
+// MARK: - Delete Transactions
+        case .deleteTransaction:
+            if objectForDelete is TransactionModel {
+                guard let transaction = objectForDelete as? TransactionModel else {return}
+                let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+                let params = ["id": transaction.id]
+                AF.request(request.rawValue, method: .delete,
+                                             parameters: params,
+                                             headers: headers)
+                                                    .response { (response) in
+                    if response.error != nil {
+                        compliton(nil)
                     }
-                    print("Transaction deleted")
                     compliton(true)
+                    compliton(response)
                 }
-            }else{
+            } else {
                 compliton(false)
             }
-            
         default:
             return
         }

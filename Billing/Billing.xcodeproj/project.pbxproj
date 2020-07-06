@@ -28,6 +28,7 @@
 		15DDCA4524AB86C500CD8DF3 /* VibrationExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */; };
 		15DDCA4724ABC16000CD8DF3 /* PlusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */; };
 		67B714C77D449D72AE427414 /* Pods_Billing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E6C2B6686EAA885B769A117 /* Pods_Billing.framework */; };
+		79BE147224AE4A1200BAEE2C /* BillingPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BE147124AE4A1200BAEE2C /* BillingPopUp.swift */; };
 		79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406224A9F51500D214FB /* BottomTableViewCell.swift */; };
 		79D8406724A9F51500D214FB /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406324A9F51500D214FB /* BottomView.swift */; };
 		79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */; };
@@ -72,6 +73,7 @@
 		15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusModel.swift; sourceTree = "<group>"; };
 		4469BE0C2AE5CB39F9686AB0 /* Pods-BillingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BillingTests.debug.xcconfig"; path = "Target Support Files/Pods-BillingTests/Pods-BillingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6620AD7114647D55D894C12A /* Pods-Billing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing.release.xcconfig"; path = "Target Support Files/Pods-Billing/Pods-Billing.release.xcconfig"; sourceTree = "<group>"; };
+		79BE147124AE4A1200BAEE2C /* BillingPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingPopUp.swift; sourceTree = "<group>"; };
 		79D8406224A9F51500D214FB /* BottomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomTableViewCell.swift; sourceTree = "<group>"; };
 		79D8406324A9F51500D214FB /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -158,10 +160,9 @@
 		151FCD2B24A6308C000B6103 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				79BE147324AE4AAF00BAEE2C /* MainView */,
 				79D8406824A9F5C700D214FB /* HeaderView */,
 				79D8406124A9F51500D214FB /* BottomView */,
-				151FCD2C24A630D0000B6103 /* BillingViewController.swift */,
-				151FCD2D24A630D0000B6103 /* BillingViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,8 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				151FCD3824A8CE6D000B6103 /* Model */,
-				151FCD2A24A6307B000B6103 /* Presenter */,
 				151FCD2B24A6308C000B6103 /* View */,
+				151FCD2A24A6307B000B6103 /* Presenter */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -247,6 +248,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		79BE147324AE4AAF00BAEE2C /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				151FCD2C24A630D0000B6103 /* BillingViewController.swift */,
+				151FCD2D24A630D0000B6103 /* BillingViewController.xib */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
 		79D8406124A9F51500D214FB /* BottomView */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,8 +269,9 @@
 		79D8406824A9F5C700D214FB /* HeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */,
 				79D8406A24A9F5C700D214FB /* HeaderView.swift */,
+				79BE147124AE4A1200BAEE2C /* BillingPopUp.swift */,
+				79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */,
 			);
 			path = HeaderView;
 			sourceTree = "<group>";
@@ -272,12 +283,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 151FCD1E24A600F8000B6103 /* Build configuration list for PBXNativeTarget "Billing" */;
 			buildPhases = (
+				15B60E0624AC8CB500DC41BD /* ShellScript */,
 				3212C8D7DD84EF7D96494D3D /* [CP] Check Pods Manifest.lock */,
 				151FCCFB24A600F4000B6103 /* Sources */,
 				151FCCFC24A600F4000B6103 /* Frameworks */,
 				151FCCFD24A600F4000B6103 /* Resources */,
 				035619B00E225AD514EC3C66 /* [CP] Embed Pods Frameworks */,
-				15B60E0624AC8CB500DC41BD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -398,7 +409,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
 		};
 		3212C8D7DD84EF7D96494D3D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -469,6 +480,7 @@
 				79D8406C24A9F5C700D214FB /* HeaderView.swift in Sources */,
 				79D8406724A9F51500D214FB /* BottomView.swift in Sources */,
 				151FCD2724A62FF7000B6103 /* Builder.swift in Sources */,
+				79BE147224AE4A1200BAEE2C /* BillingPopUp.swift in Sources */,
 				151FCD2E24A630D0000B6103 /* BillingViewController.swift in Sources */,
 				151FCD3A24A8CE9C000B6103 /* BillingModel.swift in Sources */,
 				152B81DB24AC82A100720A42 /* CostomAlert.swift in Sources */,
@@ -668,7 +680,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = BillingTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -691,7 +703,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QS4Z3MJ49V;
 				INFOPLIST_FILE = BillingTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

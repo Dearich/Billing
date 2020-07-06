@@ -4,7 +4,17 @@ disabled_rules:
 - control_statement
 - function_body_length
 - cyclomatic_complexity
+- variable_name
 
+line_length:
+    warning: 160
+    ignores_function_declarations: true
+    ignores_comments: true
+    ignores_interpolated_strings: true
+    ignores_urls: true
+
+force_cast:
+ serevity: warning
 
 opt_in_rules:
 - empty_count

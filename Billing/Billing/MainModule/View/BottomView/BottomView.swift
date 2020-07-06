@@ -11,11 +11,15 @@ import UIKit
 protocol ContentOffsetYDelegate: class {
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
 }
+protocol DeleteTransactionsDelegate: class {
+    func getIndexPath(_ indexPath: IndexPath, _ transaction: [TransactionModel])
+}
 
 class BottomView: UIView {
 
     var contentOffsetY: ContentOffsetYDelegate!
     var transactions: [TransactionModel] = []
+    weak var deleteTransactionsDelegate: DeleteTransactionsDelegate?
 
     lazy var tableView: UITableView = {
         let view = UITableView()
@@ -57,7 +61,9 @@ extension BottomView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as? BottomTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as? BottomTableViewCell else {
+            return UITableViewCell()
+        }
         //Тестовый вариант для прорверки
         cell.transaction = transactions[indexPath.row]
         return cell
@@ -68,7 +74,14 @@ extension BottomView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (_, _, compilition) in
+            self.deleteTransactionsDelegate?.getIndexPath(indexPath, self.transactions)
+            compilition(true)
+        }
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         contentOffsetY.headerAnimation(contentOffsetY: scrollView.contentOffset.y) { (contentOffset) in
             scrollView.contentOffset.y = contentOffset

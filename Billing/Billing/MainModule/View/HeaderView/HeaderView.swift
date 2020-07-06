@@ -11,12 +11,18 @@ import UIKit
 protocol HeaderViewProtocol: class {
     func showPopUpView()
 }
+protocol ShowBillingPopUP: class {
+    func showPopUP(indexPath: IndexPath)
+}
+protocol IndexPathForLongGestureRecognizer: class {
+    func indexPathForGestureRecognizer(_ indexPath: IndexPath) -> IndexPath
+}
 
 class HeaderView: UIView, ShowPopUpViewProtocol {
-
-    var billingArray: [Any] = []
     weak var headerViewDelegate: HeaderViewProtocol?
-
+    weak var showBillingPopUp: ShowBillingPopUP?
+    weak var indexPathForGestureRecognizer: IndexPathForLongGestureRecognizer?
+    var billingArray: [Any] = []
     lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         view.dataSource = self
@@ -28,7 +34,6 @@ class HeaderView: UIView, ShowPopUpViewProtocol {
         return view
     }()
     var longPressGesture: UILongPressGestureRecognizer!
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -39,26 +44,22 @@ class HeaderView: UIView, ShowPopUpViewProtocol {
         collectionView.addConstraintsWithFormat(format: "V:|-[v0]-|", views: collectionView)
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
+        //        indexPathForGestureRecognizer = self
     }
-
     @objc func longTap(_ gesture: UIGestureRecognizer) {
-
         switch gesture.state {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { return }
-
-        case .ended:
-
-            self.collectionView.reloadData()
+            //TODO: Изолировать Ячейку
+            //guard let index = indexPathForGestureRecognizer?.indexPathForGestureRecognizer(selectedIndexPath) else { return }
+            showBillingPopUp?.showPopUP(indexPath: selectedIndexPath)
         default:
             return
         }
     }
-
     func animationAddView() {
-          headerViewDelegate?.showPopUpView()
+        headerViewDelegate?.showPopUpView()
     }
-
     // MARK: - Padding and ScrollDirection in CV
     fileprivate func flowLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -68,7 +69,6 @@ class HeaderView: UIView, ShowPopUpViewProtocol {
             layout.scrollDirection = .horizontal
         }
     }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -78,22 +78,17 @@ class HeaderView: UIView, ShowPopUpViewProtocol {
 
 extension HeaderView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return billingArray.count
     }
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HeaderCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HeaderCollectionViewCell else {
+            return UICollectionViewCell() }
         cell.billing = billingArray[indexPath.row]
         cell.showPopUpViewDelegate = self
         return cell
     }
-
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
     }
-
 }
 
 // MARK: - Size for Cells
@@ -102,3 +97,12 @@ extension HeaderView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 170.0, height: collectionView.frame.height * 0.7)
     }
 }
+//TODO: Изолировать Ячейку
+//extension HeaderView: IndexPathForLongGestureRecognizer {
+//    func indexPathForGestureRecognizer(_ indexPath: IndexPath) -> IndexPath {
+//        for i in indexPath {
+//            print(i)
+//        }
+//        return indexPath
+//    }
+//}
