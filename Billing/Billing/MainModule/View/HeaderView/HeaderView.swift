@@ -44,14 +44,14 @@ class HeaderView: UIView, ShowPopUpViewProtocol {
         collectionView.addConstraintsWithFormat(format: "V:|-[v0]-|", views: collectionView)
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
-        //        indexPathForGestureRecognizer = self
+        
     }
     @objc func longTap(_ gesture: UIGestureRecognizer) {
         switch gesture.state {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { return }
             //TODO: Изолировать Ячейку
-            //guard let index = indexPathForGestureRecognizer?.indexPathForGestureRecognizer(selectedIndexPath) else { return }
+//            guard let index = indexPathForGestureRecognizer?.indexPathForGestureRecognizer(selectedIndexPath) else { return }
             showBillingPopUp?.showPopUP(indexPath: selectedIndexPath)
         default:
             return
@@ -98,11 +98,9 @@ extension HeaderView: UICollectionViewDelegateFlowLayout {
     }
 }
 //TODO: Изолировать Ячейку
-//extension HeaderView: IndexPathForLongGestureRecognizer {
-//    func indexPathForGestureRecognizer(_ indexPath: IndexPath) -> IndexPath {
-//        for i in indexPath {
-//            print(i)
-//        }
-//        return indexPath
-//    }
-//}
+extension HeaderView: IndexPathForLongGestureRecognizer {
+    func indexPathForGestureRecognizer(_ indexPath: IndexPath) -> IndexPath {
+        billingArray.removeLast()
+        return indexPath
+    }
+}
