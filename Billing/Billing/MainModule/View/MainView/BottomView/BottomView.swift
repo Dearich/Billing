@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BottomViewAddProtocol: class {
+    func addTapped()
+}
+
 protocol ContentOffsetYDelegate: class {
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
 }
@@ -15,6 +19,7 @@ class BottomView: UIView {
     
     var contentOffsetY: ContentOffsetYProtocol!
     var transactions: [TransactionModel] = []
+    weak var bottomViewAddDelegate: BottomViewAddProtocol?
     
     lazy var dataSource: ButtomDataSource = {
         let dataSource = ButtomDataSource()
@@ -66,6 +71,7 @@ class BottomView: UIView {
     @objc func addTapped(_ sender: UIButton) {
         if sender == addButton {
             print("addTapped")
+            bottomViewAddDelegate?.addTapped()
             
         }
     }

@@ -45,6 +45,10 @@ class BillingViewController: UIViewController {
         subView.view.backgroundColor = .clear
         return subView
     }()
+    let newTransactionView: NewTransactionViewController = {
+        let controller = NewTransactionViewController(nibName: "NewTransactionViewController", bundle: nil)
+        return controller
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +58,9 @@ class BillingViewController: UIViewController {
         setUpNavigationBar()
         headerView.headerViewDelegate = self
         bottomView.dataSource.contentOffsetYDelegate = self
+        bottomView.bottomViewAddDelegate = self
         subView.newBillingViewDelegate = self
+        newTransactionView.newTransactionViewCloseDelegate = self
         headerView.showBillingPopUp = self
         print("viewDidLoad Finish")
     }
@@ -64,12 +70,10 @@ class BillingViewController: UIViewController {
         subView.view.frame = self.view.frame
         self.view.addSubview(subView.view)
         subView.didMove(toParent: self)
-        subView.becomeFirstResponder()
         subView.view.alpha = 0.0
         UIView.animate(withDuration: 0.2) {
             self.subView.view.alpha = 1.0
         }
-        
     }
     private func addBlurEffect() {
         view.addSubview(visualEffectView)
@@ -131,17 +135,43 @@ extension BillingViewController: NewBillingViewCloseProtocol {
         })
         { [weak self] (done) in
             if done {
-                self?.headerView.collectionView.reloadData()
                 self?.visualEffectView.removeFromSuperview()
                 self?.subView.view.removeFromSuperview()
+                self?.headerView.collectionView.reloadData()
             }
         }
     }
+}
+extension BillingViewController: NewTransactionViewCloseProtocol {
+    func closeAction() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.visualEffectView.alpha = 0
+            self.newTransactionView.view.alpha = 0
+        }) { [weak self] (bool) in
+            self?.visualEffectView.removeFromSuperview()
+            self?.newTransactionView.view.removeFromSuperview()
+        }
+    }
+    
+    
 }
 
 extension BillingViewController: HeaderViewProtocol {
     func showPopUpView() {
         animationAddView()
+    }
+}
+extension BillingViewController: BottomViewAddProtocol {
+    func addTapped() {
+        addBlurEffect()
+        self.addChild(newTransactionView)
+        newTransactionView.view.frame = self.view.frame
+        self.view.addSubview(newTransactionView.view)
+        newTransactionView.didMove(toParent: self)
+        newTransactionView.view.alpha = 0.0
+        UIView.animate(withDuration: 0.2) {
+            self.newTransactionView.view.alpha = 1.0
+        }
     }
 }
 
@@ -153,15 +183,12 @@ extension BillingViewController: ContentOffsetYProtocol {
         if newHight > presenter.headerViewMaxHeight {
             self.heightConstraint.constant = presenter.headerViewMaxHeight
             NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight > presenter.headerViewMaxHeight: \(self.heightConstraint.constant)")
         } else if newHight < minHight {
             self.heightConstraint.constant = minHight
             NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight < minHight: \(self.heightConstraint.constant)")
         } else {
             self.heightConstraint.constant = newHight
             NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight: \(self.heightConstraint.constant)")
             complition(0)
         }
         let dinamicAlpha = ((self.heightConstraint.constant - presenter.headerViewMaxHeight) / minHight) + 1

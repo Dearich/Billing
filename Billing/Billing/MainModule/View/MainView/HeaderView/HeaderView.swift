@@ -19,7 +19,7 @@ protocol IndexPathForLongGestureRecognizer: class {
     func indexPathForGestureRecognizer(_ indexPath: IndexPath) -> IndexPath
 }
 
-class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
+class HeaderView: UIView, HeaderDataSourceProtocol {
     
     var control: UIPageControl = UIPageControl(frame: .zero)
     lazy var dataSource: HeaderDataSource = {
@@ -43,6 +43,7 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
     }()
     
     var longPressGesture: UILongPressGestureRecognizer!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -58,7 +59,6 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
             height: self.bounds.height * 0.8
         )
         centeredCollectionViewFlowLayout.minimumLineSpacing = 15
-        //        centeredCollectionViewFlowLayout.sectionInset  = .init(top: 0, left: 10, bottom: 20, right: 10)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         addSubview(control)
@@ -83,20 +83,7 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
             return
         }
     }
-    // MARK: - Padding and ScrollDirection in CV
-    func animationAddView() {
-        headerViewDelegate?.showPopUpView()
-    }
-    // MARK: - Padding and ScrollDirection in CV
-    fileprivate func flowLayout() {
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let padding: CGFloat = 10
-            layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
-            layout.minimumLineSpacing = 25
-            layout.scrollDirection = .horizontal
-        }
-    }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -104,9 +91,9 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
 extension HeaderView {
     func shouldStartAnimation() {
         headerViewDelegate?.showPopUpView()
-        
+
     }
-    
+
 }
 
 // MARK: - Size for Cells

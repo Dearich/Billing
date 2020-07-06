@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewTransactionViewController" customModule="Billing" customModuleProvider="target">
+            <connections>
+                <outlet property="categorySegmentedControl" destination="aqP-W1-Sb0" id="mK3-nH-hSo"/>
+                <outlet property="subView" destination="B0L-K1-Qaj" id="QzJ-li-9Cv"/>
+                <outlet property="sumTextField" destination="Ita-EA-tod" id="nq4-LU-0MQ"/>
+                <outlet property="titleTextField" destination="lwY-OK-7JL" id="nLq-gV-eyi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0L-K1-Qaj">
+                    <rect key="frame" x="42.5" y="122" width="329.5" height="300.5"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jkt-ww-Nza">
+                            <rect key="frame" x="7" y="35" width="315.5" height="230.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Транзакция" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ot2-YK-G9Q">
+                                    <rect key="frame" x="0.0" y="0.0" width="315.5" height="21.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="J9j-aI-eG9">
+                                    <rect key="frame" x="0.0" y="41.5" width="315.5" height="31"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Категория:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efa-M2-he5">
+                                            <rect key="frame" x="0.0" y="0.0" width="87.5" height="31"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aqP-W1-Sb0">
+                                            <rect key="frame" x="95.5" y="0.0" width="220" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="220" id="inW-ua-ChM"/>
+                                            </constraints>
+                                            <segments>
+                                                <segment title="Groceries"/>
+                                                <segment title="Online"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
+                                </stackView>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Наименование" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lwY-OK-7JL">
+                                    <rect key="frame" x="0.0" y="92.5" width="315.5" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Сумма" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ita-EA-tod">
+                                    <rect key="frame" x="0.0" y="146.5" width="315.5" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0aD-Uu-hMq">
+                                    <rect key="frame" x="0.0" y="200.5" width="315.5" height="30"/>
+                                    <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="3CT-V8-TAy"/>
+                                    </constraints>
+                                    <state key="normal" title="Сохранить">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="saveButtonAction:" destination="-1" eventType="touchUpInside" id="rGp-rQ-JP7"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="jkt-ww-Nza" firstAttribute="centerX" secondItem="B0L-K1-Qaj" secondAttribute="centerX" id="6qQ-1C-JDj"/>
+                        <constraint firstAttribute="width" constant="329.5" id="82N-k3-qHe"/>
+                        <constraint firstItem="jkt-ww-Nza" firstAttribute="top" secondItem="B0L-K1-Qaj" secondAttribute="top" constant="35" id="8Uu-U5-g06"/>
+                        <constraint firstItem="jkt-ww-Nza" firstAttribute="centerY" secondItem="B0L-K1-Qaj" secondAttribute="centerY" id="EhM-0b-VkG"/>
+                        <constraint firstItem="jkt-ww-Nza" firstAttribute="leading" secondItem="B0L-K1-Qaj" secondAttribute="leading" constant="7" id="e3T-QO-Noq"/>
+                        <constraint firstAttribute="height" constant="300.5" id="xjV-2x-jQP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="B0L-K1-Qaj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hgo-Dm-L2k"/>
+                <constraint firstItem="B0L-K1-Qaj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="78" id="qRf-QR-Ltl"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
+        </view>
+    </objects>
+</document>

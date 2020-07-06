@@ -27,6 +27,8 @@
 		1529448424AD0F80004BE1C3 /* ButtomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1529448324AD0F80004BE1C3 /* ButtomDataSource.swift */; };
 		1529448624AD3167004BE1C3 /* PostClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1529448524AD3167004BE1C3 /* PostClass.swift */; };
 		152B81DB24AC82A100720A42 /* CostomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152B81DA24AC82A100720A42 /* CostomAlert.swift */; };
+		155DE59724B3AC4E0096363E /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155DE59524B3AC4E0096363E /* NewTransactionViewController.swift */; };
+		155DE59824B3AC4E0096363E /* NewTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 155DE59624B3AC4E0096363E /* NewTransactionViewController.xib */; };
 		156EC4B324ADE73F00F8A062 /* NewBilling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156EC4B224ADE73F00F8A062 /* NewBilling.swift */; };
 		156EC4BB24AE35AD00F8A062 /* NewBillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156EC4BA24AE35AD00F8A062 /* NewBillingView.swift */; };
 		15DDCA4324AA43B000CD8DF3 /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */; };
@@ -39,7 +41,6 @@
 		79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */; };
 		79D8406C24A9F5C700D214FB /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D8406A24A9F5C700D214FB /* HeaderView.swift */; };
 		79DEED4C24AC5B800069F013 /* DeleteClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DEED4B24AC5B800069F013 /* DeleteClass.swift */; };
-		79DEED4E24AC64C70069F013 /* PostClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DEED4D24AC64C70069F013 /* PostClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		1529448324AD0F80004BE1C3 /* ButtomDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomDataSource.swift; sourceTree = "<group>"; };
 		1529448524AD3167004BE1C3 /* PostClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClass.swift; sourceTree = "<group>"; };
 		152B81DA24AC82A100720A42 /* CostomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostomAlert.swift; sourceTree = "<group>"; };
+		155DE59524B3AC4E0096363E /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewTransactionViewController.swift; path = NewTrabsactionView/NewTransactionViewController.swift; sourceTree = "<group>"; };
+		155DE59624B3AC4E0096363E /* NewTransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewTransactionViewController.xib; path = NewTrabsactionView/NewTransactionViewController.xib; sourceTree = "<group>"; };
 		156EC4B224ADE73F00F8A062 /* NewBilling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBilling.swift; sourceTree = "<group>"; };
 		156EC4BA24AE35AD00F8A062 /* NewBillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBillingView.swift; sourceTree = "<group>"; };
 		15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
@@ -89,7 +92,6 @@
 		79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		79D8406A24A9F5C700D214FB /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		79DEED4B24AC5B800069F013 /* DeleteClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteClass.swift; sourceTree = "<group>"; };
-		79DEED4D24AC64C70069F013 /* PostClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClass.swift; sourceTree = "<group>"; };
 		8E6C2B6686EAA885B769A117 /* Pods_Billing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Billing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B00DFC7F07D3507D9C7BF8D8 /* Pods-Billing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billing.debug.xcconfig"; path = "Target Support Files/Pods-Billing/Pods-Billing.debug.xcconfig"; sourceTree = "<group>"; };
 		D56DF0C01EE32B3A08DC77F5 /* Pods_BillingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BillingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,10 +172,7 @@
 		151FCD2B24A6308C000B6103 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				156EC4BA24AE35AD00F8A062 /* NewBillingView.swift */,
 				79BE147324AE4AAF00BAEE2C /* MainView */,
-				79D8406824A9F5C700D214FB /* HeaderView */,
-				79D8406124A9F51500D214FB /* BottomView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -205,7 +204,6 @@
 				151FCD3624A753E5000B6103 /* RequestType.swift */,
 				151FCD3424A6410F000B6103 /* GetClass.swift */,
 				79DEED4B24AC5B800069F013 /* DeleteClass.swift */,
-				79DEED4D24AC64C70069F013 /* PostClass.swift */,
 				151FCD3E24A8DE59000B6103 /* CheckInternetConnection.swift */,
 				1529448524AD3167004BE1C3 /* PostClass.swift */,
 			);
@@ -266,6 +264,8 @@
 			children = (
 				151FCD2C24A630D0000B6103 /* BillingViewController.swift */,
 				151FCD2D24A630D0000B6103 /* BillingViewController.xib */,
+				79D8406824A9F5C700D214FB /* HeaderView */,
+				79D8406124A9F51500D214FB /* BottomView */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -276,6 +276,8 @@
 				1529448324AD0F80004BE1C3 /* ButtomDataSource.swift */,
 				79D8406224A9F51500D214FB /* BottomTableViewCell.swift */,
 				79D8406324A9F51500D214FB /* BottomView.swift */,
+				155DE59524B3AC4E0096363E /* NewTransactionViewController.swift */,
+				155DE59624B3AC4E0096363E /* NewTransactionViewController.xib */,
 			);
 			path = BottomView;
 			sourceTree = "<group>";
@@ -283,11 +285,11 @@
 		79D8406824A9F5C700D214FB /* HeaderView */ = {
 			isa = PBXGroup;
 			children = (
+				156EC4BA24AE35AD00F8A062 /* NewBillingView.swift */,
+				79D8406A24A9F5C700D214FB /* HeaderView.swift */,
 				1529448124AD07E6004BE1C3 /* HeaderDataSource.swift */,
 				79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */,
-				79D8406A24A9F5C700D214FB /* HeaderView.swift */,
 				79BE147124AE4A1200BAEE2C /* BillingPopUp.swift */,
-				79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */,
 			);
 			path = HeaderView;
 			sourceTree = "<group>";
@@ -377,6 +379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				155DE59824B3AC4E0096363E /* NewTransactionViewController.xib in Resources */,
 				151FCD0F24A600F8000B6103 /* LaunchScreen.storyboard in Resources */,
 				151FCD2F24A630D0000B6103 /* BillingViewController.xib in Resources */,
 				151FCD0C24A600F8000B6103 /* Assets.xcassets in Resources */,
@@ -478,12 +481,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79DEED4E24AC64C70069F013 /* PostClass.swift in Sources */,
 				151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */,
 				151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */,
 				79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */,
 				15DDCA4524AB86C500CD8DF3 /* VibrationExtention.swift in Sources */,
 				79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */,
+				155DE59724B3AC4E0096363E /* NewTransactionViewController.swift in Sources */,
 				151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */,
 				1529448424AD0F80004BE1C3 /* ButtomDataSource.swift in Sources */,
 				79DEED4C24AC5B800069F013 /* DeleteClass.swift in Sources */,

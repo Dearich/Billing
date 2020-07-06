@@ -25,7 +25,7 @@ class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return billingArray.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HeaderCollectionViewCell
@@ -44,7 +44,7 @@ class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDe
         headerDataSourceDelegate?.control.currentPage = indexPath.row
       }
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard let cells = headerDataSourceDelegate?.collectionView.visibleCells else { return }
         for cell in cells {

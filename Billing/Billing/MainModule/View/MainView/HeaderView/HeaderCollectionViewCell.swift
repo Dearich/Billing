@@ -76,7 +76,8 @@ class HeaderCollectionViewCell: UICollectionViewCell {
 
         } else {
             addSubview(addButton)
-
+            balanceLabel.removeFromSuperview()
+            ownerLabel.removeFromSuperview()
             addButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
             addButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
@@ -87,10 +88,8 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
-            addButton.removeFromSuperview()
-           super.prepareForReuse()
-           balanceLabel.text = nil
-           ownerLabel.text = nil
+        super.prepareForReuse()
+        addButton.removeFromSuperview()
        }
 
 }

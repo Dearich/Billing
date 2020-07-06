@@ -55,6 +55,4 @@ class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
         scrollView.contentOffset.y = contentOffset
         }  // для анимации хедера
     }
-
 }
-
