@@ -8,10 +8,17 @@
 
 import UIKit
 
+protocol ContentOffsetYDelegate: class {
+    func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
+}
+protocol DeleteTransactionsDelegate: class {
+    func getIndexPath(_ indexPath: IndexPath, _ transaction: [TransactionModel])
+}
 class BottomView: UIView {
 
     var contentOffsetY: ContentOffsetYProtocol!
     var transactions: [TransactionModel] = []
+    weak var deleteTransactionsDelegate: DeleteTransactionsDelegate?
 
     lazy var dataSource: ButtomDataSource = {
         let dataSource = ButtomDataSource()
@@ -65,6 +72,4 @@ class BottomView: UIView {
             print("addTapped")
            
         }
-    }
-
 }

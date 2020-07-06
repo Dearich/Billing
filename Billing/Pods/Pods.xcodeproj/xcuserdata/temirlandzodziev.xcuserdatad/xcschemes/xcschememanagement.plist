@@ -7,27 +7,47 @@
 		<key>Alamofire.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>5</integer>
+=======
+			<integer>3</integer>
+>>>>>>> origin/Dzodziev-Temirlan
 		</dict>
 		<key>Pods-Billing.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>6</integer>
+=======
+			<integer>0</integer>
+>>>>>>> origin/Dzodziev-Temirlan
 		</dict>
 		<key>Pods-BillingTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>4</integer>
+=======
+			<integer>1</integer>
+>>>>>>> origin/Dzodziev-Temirlan
 		</dict>
 		<key>RxCocoa.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>2</integer>
+=======
+			<integer>4</integer>
+>>>>>>> origin/Dzodziev-Temirlan
 		</dict>
 		<key>RxRelay.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>0</integer>
+=======
+			<integer>6</integer>
+>>>>>>> origin/Dzodziev-Temirlan
 		</dict>
 		<key>RxSwift.xcscheme_^#shared#^_</key>
 		<dict>

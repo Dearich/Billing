@@ -4,9 +4,11 @@ disabled_rules:
 - control_statement
 - function_body_length
 - cyclomatic_complexity
+<<<<<<< HEAD
 - trailing_whitespace
+=======
 - variable_name
-
+>>>>>>> origin/Dzodziev-Temirlan
 
 line_length:
     warning: 160

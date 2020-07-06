@@ -8,11 +8,11 @@
 
 import AVFoundation
 import UIKit
+
 extension UIDevice {
-    static func vibrate() {
-        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
-        impactFeedbackgenerator.prepare()
-        impactFeedbackgenerator.impactOccurred()
-//
-    }
+//    static func vibrate() {
+//        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .light)
+//        impactFeedbackgenerator.prepare()
+//        impactFeedbackgenerator.impactOccurred()
+//    }
 }

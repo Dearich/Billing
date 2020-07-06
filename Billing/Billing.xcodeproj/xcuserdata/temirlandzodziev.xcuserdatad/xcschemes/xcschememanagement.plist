@@ -7,7 +7,11 @@
 		<key>Billing.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>1</integer>
+=======
+			<integer>5</integer>
+>>>>>>> origin/Dzodziev-Temirlan
 		</dict>
 	</dict>
 </dict>
