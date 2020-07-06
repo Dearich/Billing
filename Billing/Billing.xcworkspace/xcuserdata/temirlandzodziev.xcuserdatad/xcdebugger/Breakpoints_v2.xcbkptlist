@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "F385E20D-A242-4C5D-A7EE-A85BE959F561"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57A248E1-8C59-4991-9A5D-F51686F7133C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Billing/MainModule/Presenter/Presenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "deleteObject(_:complition:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "57A248E1-8C59-4991-9A5D-F51686F7133C - 17857bb9b126ba38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Billing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "142">
+               </Location>
+               <Location
+                  uuid = "57A248E1-8C59-4991-9A5D-F51686F7133C - 1304bb5c46c2f666"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Billing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "147">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14DE2362-1E25-4FAD-ADB4-0D97046CC182"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Billing/MainModule/Presenter/Presenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "deleteObject(_:complition:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "14DE2362-1E25-4FAD-ADB4-0D97046CC182 - 17857bb9b126ba38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Billing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "299">
+               </Location>
+               <Location
+                  uuid = "14DE2362-1E25-4FAD-ADB4-0D97046CC182 - a9d63de0b5ba4879"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;Any&gt;) -&gt; () in Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "Billing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E63FB5BF-C7B6-4F07-8A70-8242A16D2A5D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Billing/MainModule/Presenter/Presenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "deleteObject(_:complition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
