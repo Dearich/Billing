@@ -29,8 +29,8 @@ class BillingViewController: UIViewController {
     lazy var bottomView: BottomView = {
         let view = BottomView()
         view.contentOffsetY = self
-        view.deleteTransactionsDelegate = self
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.dataSource.deleteTransactionsDelegate = self
         return view
     }()
     let visualEffectView: UIVisualEffectView = {
@@ -45,7 +45,7 @@ class BillingViewController: UIViewController {
         subView.view.backgroundColor = .clear
         return subView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.getData()
@@ -69,7 +69,7 @@ class BillingViewController: UIViewController {
         UIView.animate(withDuration: 0.2) {
             self.subView.view.alpha = 1.0
         }
-
+        
     }
     private func addBlurEffect() {
         view.addSubview(visualEffectView)
@@ -136,11 +136,12 @@ extension BillingViewController: NewBillingViewCloseProtocol {
                 self?.subView.view.removeFromSuperview()
             }
         }
+    }
 }
 
 extension BillingViewController: HeaderViewProtocol {
     func showPopUpView() {
-                animationAddView()
+        animationAddView()
     }
 }
 
@@ -202,8 +203,8 @@ extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
             self.billingPopUp.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.presenter.deleteObject(self.presenter.objectForDelete!) { (_) in}
         }) { [weak self](_) in
-                print("Reload Data")
-                self?.headerView.collectionView.reloadData()
+            print("Reload Data")
+            self?.headerView.collectionView.reloadData()
             self?.billingPopUp.removeFromSuperview()
         }
     }
@@ -217,6 +218,7 @@ extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
         return strDate
     }
 }
+
 extension BillingViewController: DeleteTransactionsDelegate {
     func getIndexPath( _ indexPath: IndexPath, _ transaction: [TransactionModel]) {
         presenter.deleteObject(transaction[indexPath.row]) {[weak self] (done) in

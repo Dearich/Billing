@@ -11,20 +11,16 @@ import UIKit
 protocol ContentOffsetYDelegate: class {
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
 }
-protocol DeleteTransactionsDelegate: class {
-    func getIndexPath(_ indexPath: IndexPath, _ transaction: [TransactionModel])
-}
 class BottomView: UIView {
-
+    
     var contentOffsetY: ContentOffsetYProtocol!
     var transactions: [TransactionModel] = []
-    weak var deleteTransactionsDelegate: DeleteTransactionsDelegate?
-
+    
     lazy var dataSource: ButtomDataSource = {
         let dataSource = ButtomDataSource()
         return dataSource
     }()
-
+    
     lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -32,20 +28,20 @@ class BottomView: UIView {
         view.dataSource = self.dataSource
         return view
     }()
-
+    
     let addButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "add"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     // MARK: - init tableView on SubView
     override init(frame: CGRect) {
         super.init(frame: frame)
         tableView.register(BottomTableViewCell.self, forCellReuseIdentifier: "TableCell")
         backgroundColor = .white
-
+        
         addSubview(tableView)
         tableView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
@@ -62,14 +58,15 @@ class BottomView: UIView {
         addButton.addConstraintsWithFormat(format: "H:[v0(35)]-|", views: addButton)
         addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     @objc func addTapped(_ sender: UIButton) {
         if sender == addButton {
             print("addTapped")
-           
+            
         }
+    }
 }

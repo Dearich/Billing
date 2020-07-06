@@ -22,17 +22,11 @@ protocol IndexPathForLongGestureRecognizer: class {
 class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
     
     var control: UIPageControl = UIPageControl(frame: .zero)
-    
-
-    weak var headerViewDelegate: HeaderViewProtocol?
-
     lazy var dataSource: HeaderDataSource = {
         let dataSource = HeaderDataSource()
         return dataSource
     }()
-
     let centeredCollectionViewFlowLayout = CenteredCollectionViewFlowLayout()
-
     weak var headerViewDelegate: HeaderViewProtocol?
     weak var showBillingPopUp: ShowBillingPopUP?
     weak var indexPathForGestureRecognizer: IndexPathForLongGestureRecognizer?
@@ -47,7 +41,7 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         return view
     }()
-
+    
     var longPressGesture: UILongPressGestureRecognizer!
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,11 +54,11 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
         centeredCollectionViewFlowLayout.itemSize = CGSize(
-          width: 190,
-          height: self.bounds.height * 0.8
+            width: 190,
+            height: self.bounds.height * 0.8
         )
         centeredCollectionViewFlowLayout.minimumLineSpacing = 15
-//        centeredCollectionViewFlowLayout.sectionInset  = .init(top: 0, left: 10, bottom: 20, right: 10)
+        //        centeredCollectionViewFlowLayout.sectionInset  = .init(top: 0, left: 10, bottom: 20, right: 10)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         addSubview(control)
@@ -75,15 +69,15 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
         control.currentPageIndicatorTintColor = .black
         control.currentPage = 0
         control.isEnabled = false
-
+        
     }
     @objc func longTap(_ gesture: UIGestureRecognizer) {
         switch gesture.state {
         case .began:
-
+            
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else { return }
             //TODO: Изолировать Ячейку
-//            guard let index = indexPathForGestureRecognizer?.indexPathForGestureRecognizer(selectedIndexPath) else { return }
+            //            guard let index = indexPathForGestureRecognizer?.indexPathForGestureRecognizer(selectedIndexPath) else { return }
             showBillingPopUp?.showPopUP(indexPath: selectedIndexPath)
         default:
             return
@@ -102,7 +96,7 @@ class HeaderView: UIView, HeaderDataSourceProtocol, ShowPopUpViewProtocol {
             layout.scrollDirection = .horizontal
         }
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

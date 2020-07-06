@@ -10,8 +10,6 @@ target 'Billing' do
 	pod 'RxSwift', '~> 5'
     	pod 'RxCocoa', '~> 5'
 	pod "CenteredCollectionView"
-
-
   target 'BillingTests' do
     inherit! :search_paths
     # Pods for testing

@@ -13,10 +13,15 @@ protocol ContentOffsetYProtocol: class {
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
 }
 
+protocol DeleteTransactionsDelegate: class {
+    func getIndexPath(_ indexPath: IndexPath, _ transaction: [TransactionModel])
+}
+
 class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
 
-    var transactions: [Any] = []
+    var transactions: [TransactionModel] = []
     weak var contentOffsetYDelegate: ContentOffsetYProtocol?
+    weak var deleteTransactionsDelegate: DeleteTransactionsDelegate?
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            return transactions.count
@@ -35,6 +40,15 @@ class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
            return 70
     }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "delete") { (_, _, complition) in
+            self.deleteTransactionsDelegate?.getIndexPath(indexPath, self.transactions)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            complition(true)
+        }
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
+    }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         contentOffsetYDelegate?.headerAnimation(contentOffsetY: scrollView.contentOffset.y) { (contentOffset) in
@@ -43,3 +57,4 @@ class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
 
 }
+

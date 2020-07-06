@@ -10,7 +10,7 @@ import UIKit
 
 class BottomTableViewCell: UITableViewCell {
 
-    var transaction: Any?
+    var transaction: TransactionModel?
 
     let imageCategory: UIImageView = {
         let view = UIImageView()
@@ -48,8 +48,7 @@ class BottomTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         addSubview(imageCategory)
-        if transaction is TransactionModel {
-            guard let trans = transaction as? TransactionModel else { return }
+            guard let trans = transaction else { return }
             imageCategory.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20).isActive = true
             imageCategory.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             imageCategory.heightAnchor.constraint(equalToConstant: bounds.height * 0.9).isActive = true
@@ -82,7 +81,6 @@ class BottomTableViewCell: UITableViewCell {
             costLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10).isActive = true
             costLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             costLabel.text = "\(trans.sum)"
-        }
     }
     override func prepareForReuse() {
         super.prepareForReuse()

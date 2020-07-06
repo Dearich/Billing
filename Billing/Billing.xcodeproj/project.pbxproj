@@ -170,11 +170,8 @@
 		151FCD2B24A6308C000B6103 /* View */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				156EC4BA24AE35AD00F8A062 /* NewBillingView.swift */,
-=======
 				79BE147324AE4AAF00BAEE2C /* MainView */,
->>>>>>> origin/Dzodziev-Temirlan
 				79D8406824A9F5C700D214FB /* HeaderView */,
 				79D8406124A9F51500D214FB /* BottomView */,
 			);
@@ -286,11 +283,8 @@
 		79D8406824A9F5C700D214FB /* HeaderView */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				1529448124AD07E6004BE1C3 /* HeaderDataSource.swift */,
 				79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */,
-=======
->>>>>>> origin/Dzodziev-Temirlan
 				79D8406A24A9F5C700D214FB /* HeaderView.swift */,
 				79BE147124AE4A1200BAEE2C /* BillingPopUp.swift */,
 				79D8406924A9F5C700D214FB /* HeaderCollectionViewCell.swift */,
@@ -305,12 +299,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 151FCD1E24A600F8000B6103 /* Build configuration list for PBXNativeTarget "Billing" */;
 			buildPhases = (
-				15B60E0624AC8CB500DC41BD /* ShellScript */,
 				3212C8D7DD84EF7D96494D3D /* [CP] Check Pods Manifest.lock */,
+				15B60E0624AC8CB500DC41BD /* ShellScript */,
 				151FCCFB24A600F4000B6103 /* Sources */,
 				151FCCFC24A600F4000B6103 /* Frameworks */,
 				151FCCFD24A600F4000B6103 /* Resources */,
-				035619B00E225AD514EC3C66 /* [CP] Embed Pods Frameworks */,
+				4C75673B5A9F163AF72D4388 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -399,23 +393,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		035619B00E225AD514EC3C66 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		15B60E0624AC8CB500DC41BD /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +432,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4C75673B5A9F163AF72D4388 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Billing/Pods-Billing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DFF458EDC317D9CAA17CE8BC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -491,11 +485,8 @@
 				15DDCA4524AB86C500CD8DF3 /* VibrationExtention.swift in Sources */,
 				79D8406B24A9F5C700D214FB /* HeaderCollectionViewCell.swift in Sources */,
 				151FCD3F24A8DE59000B6103 /* CheckInternetConnection.swift in Sources */,
-<<<<<<< HEAD
 				1529448424AD0F80004BE1C3 /* ButtomDataSource.swift in Sources */,
-=======
 				79DEED4C24AC5B800069F013 /* DeleteClass.swift in Sources */,
->>>>>>> origin/Dzodziev-Temirlan
 				151FCD0324A600F4000B6103 /* AppDelegate.swift in Sources */,
 				1529448624AD3167004BE1C3 /* PostClass.swift in Sources */,
 				151FCD2524A62FDC000B6103 /* Presenter.swift in Sources */,
