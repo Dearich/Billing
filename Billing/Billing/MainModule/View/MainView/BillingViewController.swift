@@ -18,11 +18,11 @@ class BillingViewController: UIViewController {
         let view = BillingPopUp()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.closePopUPDelegate = self
-        view.billingData = presenter.getBillingForPopUp
         return view
     }()
     let headerView: HeaderView = {
         let view = HeaderView()
+        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -40,7 +40,7 @@ class BillingViewController: UIViewController {
         return view
     }()
     
-    let subView : NewBillingView = {
+    let subView: NewBillingView = {
         let subView = NewBillingView()
         subView.view.backgroundColor = .clear
         return subView
@@ -61,7 +61,7 @@ class BillingViewController: UIViewController {
         bottomView.bottomViewAddDelegate = self
         subView.newBillingViewDelegate = self
         newTransactionView.newTransactionViewCloseDelegate = self
-        headerView.showBillingPopUp = self
+        HeaderCollectionViewCell.shared.showBillingPopUp = self
         print("viewDidLoad Finish")
     }
     func animationAddView() {
@@ -132,8 +132,7 @@ extension BillingViewController: NewBillingViewCloseProtocol {
         UIView.animate(withDuration: 0.3, animations: {
             self.visualEffectView.alpha = 0
             self.subView.view.alpha = 0
-        })
-        { [weak self] (done) in
+        }) { [weak self] (done) in
             if done {
                 self?.visualEffectView.removeFromSuperview()
                 self?.subView.view.removeFromSuperview()
@@ -148,12 +147,12 @@ extension BillingViewController: NewTransactionViewCloseProtocol {
             self.visualEffectView.alpha = 0
             self.newTransactionView.view.alpha = 0
         }) { [weak self] (bool) in
-            self?.visualEffectView.removeFromSuperview()
-            self?.newTransactionView.view.removeFromSuperview()
+            if bool {
+                self?.visualEffectView.removeFromSuperview()
+                self?.newTransactionView.view.removeFromSuperview()
+            }
         }
     }
-    
-    
 }
 
 extension BillingViewController: HeaderViewProtocol {
@@ -199,11 +198,12 @@ extension BillingViewController: ContentOffsetYProtocol {
 }
 
 extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
+    
     fileprivate func haptikEngine(_ generator: UINotificationFeedbackGenerator) {
         generator.notificationOccurred(.success)
         addBlurEffect()
     }
-    func showPopUP(indexPath: IndexPath) {
+    func showPopUP(_ billing: BillingModel) {
         let generator = UINotificationFeedbackGenerator()
         haptikEngine(generator)
         view.addSubview(billingPopUp)
@@ -213,14 +213,14 @@ extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
         billingPopUp.widthAnchor.constraint(equalToConstant: view.frame.width / 1.2).isActive = true
         billingPopUp.transform = CGAffineTransform(scaleX: 1, y: 1)
         billingPopUp.layer.cornerRadius = 15
-        guard let billing = billingPopUp.billingData?[indexPath.row] else {return}
+        presenter.objectForDelete = billing
         billingPopUp.balance.text = "Balance: \(billing.balance)"
         billingPopUp.owner.text = "Owner: \(billing.owner)"
         billingPopUp.dateLabel.text = stringDate(billing.date)
-        presenter.objectForDelete = billing
-        //TODO: Индекс становится не верным после первого удаления, но при этом после удаления с конца, все ок!
         UIView.animate(withDuration: 0.4) {
             self.billingPopUp.alpha = 1
+            
+            
         }
     }
     func dissmis() {
@@ -228,9 +228,9 @@ extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
             self.visualEffectView.alpha = 0
             self.billingPopUp.alpha = 0
             self.billingPopUp.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.presenter.deleteObject(self.presenter.objectForDelete!) { (_) in}
+            self.presenter.deleteObject(self.presenter.objectForDelete!) {(_) in}
+            print(self.presenter.objectForDelete!)
         }) { [weak self](_) in
-            print("Reload Data")
             self?.headerView.collectionView.reloadData()
             self?.billingPopUp.removeFromSuperview()
         }
@@ -245,7 +245,6 @@ extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
         return strDate
     }
 }
-
 extension BillingViewController: DeleteTransactionsDelegate {
     func getIndexPath( _ indexPath: IndexPath, _ transaction: [TransactionModel]) {
         presenter.deleteObject(transaction[indexPath.row]) {[weak self] (done) in

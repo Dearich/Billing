@@ -12,7 +12,6 @@ import RxSwift
 
 protocol PresenterProtocol: ObjectForDeleteProtocol {
     var view: UIViewController { get }
-    var getBillingForPopUp: [BillingModel]? {get set}
     var objectForDelete: Any? {get set}
     func getData()
 }
@@ -22,7 +21,6 @@ class Presenter: PresenterProtocol {
     //    let view: BillingViewController
     lazy var getClass = GetClass()
     var headerViewMaxHeight: CGFloat = 0.0
-    var getBillingForPopUp: [BillingModel]?
     var objectForDelete: Any?
     let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
     required init(view: BillingViewController) {
@@ -39,7 +37,6 @@ class Presenter: PresenterProtocol {
                     .subscribe(onNext: { (response) in
                         guard let response = response as? [BillingModel] else { return }
                         view.setUpHeaderView(billingArray: response)
-                        self.getBillingForPopUp = response
                     }, onError: { (error) in
                         print(error.localizedDescription)
                     })
@@ -80,16 +77,16 @@ class Presenter: PresenterProtocol {
         let deleteClass = DeleteClass(objectForDelete: object)
         deleteClass.chooseRequest(with: .deleteBilling) { (response) in
             if response as? Bool == true {
+                    self.getData()
                 complition(true)
-                self.getData()
             } else {
                 complition(false)
             }
         }
         deleteClass.chooseRequest(with: .deleteTransaction) { (response) in
             if response as? Bool == true {
+                    self.getData()
                 complition(true)
-                self.getData()
             } else {
                 complition(false)
             }

@@ -16,12 +16,10 @@ protocol HeaderDataSourceProtocol:class {
     var control: UIPageControl { get }
     var collectionView: UICollectionView { get }
 }
-
 class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var billingArray: [Any] = []
     weak var headerDataSourceDelegate: HeaderDataSourceProtocol?
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return billingArray.count
     }
@@ -31,8 +29,6 @@ class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDe
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? HeaderCollectionViewCell
             else { return UICollectionViewCell() }
         cell.billing = billingArray[indexPath.row]
-        cell.showPopUpViewDelegate = self
-        
         return cell
     }
 
@@ -63,11 +59,4 @@ extension HeaderDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 190.0, height: collectionView.frame.height * 0.75)
     }
-}
-
-extension HeaderDataSource: ShowPopUpViewProtocol {
-    func animationAddView() {
-        headerDataSourceDelegate?.shouldStartAnimation()
-    }
-    
 }
