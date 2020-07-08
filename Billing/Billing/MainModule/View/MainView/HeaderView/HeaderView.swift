@@ -12,8 +12,8 @@ import CenteredCollectionView
 protocol HeaderViewProtocol: class {
     func showPopUpView()
 }
+
 class HeaderView: UIView, HeaderDataSourceProtocol {
-    
     var control: UIPageControl = UIPageControl(frame: .zero)
     lazy var dataSource: HeaderDataSource = {
         let dataSource = HeaderDataSource()

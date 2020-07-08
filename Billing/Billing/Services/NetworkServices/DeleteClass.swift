@@ -20,45 +20,43 @@ class DeleteClass: NetworkSupportProtocol {
     }
     func chooseRequest(with request: Request, compliton: @escaping (Any?) -> Void) {
         switch request {
-// MARK: - Delete Billings
+        // MARK: - Delete Billings
         case .deleteBilling:
             if objectForDelete is BillingModel {
                 guard let billing = objectForDelete as? BillingModel else {return}
                 let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
                 let params = ["id": billing.id]
                 AF.request(request.rawValue, method: .delete,
-                                             parameters: params,
-                                             headers: headers)
+                                                    parameters: params,
+                                                    headers: headers)
                                                     .response { (response) in
-                    if response.error != nil {
-                        compliton(nil)
-                    }
-                    print("ObjectDeleted")
-                    compliton(true)
-                    compliton(response)
+                        if response.error != nil {
+                            compliton(nil)
+                        } else {
+                            print("ObjectDeleted")
+                            compliton(response)
+                        }
                 }
-            } else {
-                compliton(false)
             }
-// MARK: - Delete Transactions
+        // MARK: - Delete Transactions
         case .deleteTransaction:
             if objectForDelete is TransactionModel {
                 guard let transaction = objectForDelete as? TransactionModel else {return}
                 let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
                 let params = ["id": transaction.id]
                 AF.request(request.rawValue, method: .delete,
-                                             parameters: params,
-                                             headers: headers)
+                                                    parameters: params,
+                                                    headers: headers)
                                                     .response { (response) in
-                    if response.error != nil {
-                        compliton(nil)
-                    }
-                    compliton(true)
-                    compliton(response)
+                        if response.error != nil {
+                            compliton(nil)
+                        } else {
+                            print("ObjectDeleted")
+                            compliton(response)
+                        }
                 }
-            } else {
-                compliton(false)
             }
+            
         default:
             return
         }

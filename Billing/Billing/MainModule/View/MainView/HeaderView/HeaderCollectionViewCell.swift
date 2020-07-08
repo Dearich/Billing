@@ -11,17 +11,16 @@ import UIKit
 protocol ShowPopUpViewProtocol: class {
     func animationAddView()
 }
-protocol ShowBillingPopUP: class {
-    func showPopUP(_ billing: BillingModel)
+protocol FromCelltoHeaderView: class {
+    func fromCelltoHeader(_ billing: BillingModel)
 }
 class HeaderCollectionViewCell: UICollectionViewCell {
-    
+    weak var fromCelltoHeaderVew: FromCelltoHeaderView?
     static let shared = HeaderCollectionViewCell()
     
     var longPressGesture: UILongPressGestureRecognizer!
     var billing: Any?
     weak var showPopUpViewDelegate: ShowPopUpViewProtocol?
-    weak var showBillingPopUp: ShowBillingPopUP?
     let balanceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -94,12 +93,15 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         showPopUpViewDelegate?.animationAddView()
     }
     @objc func longTap(_ gesture: UIGestureRecognizer) {
-        
-        if billing is BillingModel {
-            guard let bill = billing as? BillingModel else {return}
-            showBillingPopUp?.showPopUP(bill)
+        switch gesture.state {
+        case .began:
+            if billing is BillingModel {
+                guard let bill = billing as? BillingModel else {return}
+                fromCelltoHeaderVew?.fromCelltoHeader(bill)
+            }
+        @unknown default:
+            return
         }
-        
     }
     
     override func prepareForReuse() {

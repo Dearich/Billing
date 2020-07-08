@@ -7,36 +7,68 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "57A248E1-8C59-4991-9A5D-F51686F7133C"
+            uuid = "FA55D069-A31A-4E68-8B8C-423990D33666"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Billing/MainModule/View/MainView/BillingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "dissmis()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FA55D069-A31A-4E68-8B8C-423990D33666 - ce2ec2e7de59776f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Billing.BillingViewController.dissmis() -&gt; ()"
+                  moduleName = "Billing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/View/MainView/BillingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "231"
+                  endingLineNumber = "231"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "FA55D069-A31A-4E68-8B8C-423990D33666 - 5499a08781d64d58"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in closure #1 () -&gt; () in Billing.BillingViewController.dissmis() -&gt; ()"
+                  moduleName = "Billing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/View/MainView/BillingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "231"
+                  endingLineNumber = "231"
+                  offsetFromSymbolStart = "149">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A43D1A0A-D567-4764-8F24-7815C9361108"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Billing/MainModule/Presenter/Presenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "deleteObject(_:complition:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "14DE2362-1E25-4FAD-ADB4-0D97046CC182"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Billing/MainModule/Presenter/Presenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "deleteObject(_:complition:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "14DE2362-1E25-4FAD-ADB4-0D97046CC182 - 17857bb9b126ba38"
+                  uuid = "A43D1A0A-D567-4764-8F24-7815C9361108 - 17857bb9b126ba38"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -46,24 +78,24 @@
                   urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "88"
-                  endingLineNumber = "88"
-                  offsetFromSymbolStart = "299">
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "142">
                </Location>
                <Location
-                  uuid = "14DE2362-1E25-4FAD-ADB4-0D97046CC182 - a9d63de0b5ba4879"
+                  uuid = "A43D1A0A-D567-4764-8F24-7815C9361108 - 1304bb5c46c2f666"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Swift.Optional&lt;Any&gt;) -&gt; () in Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "Billing"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "89"
-                  endingLineNumber = "89"
-                  offsetFromSymbolStart = "132">
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "147">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -71,48 +103,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E63FB5BF-C7B6-4F07-8A70-8242A16D2A5D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Billing/MainModule/Presenter/Presenter.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "deleteObject(_:complition:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2E7CB562-A925-44A6-9339-0462F1EE3EC6"
+            uuid = "EC975344-ADBB-4AEE-8321-42271557893A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Billing/MainModule/Presenter/Presenter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "deleteObject(_:complition:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DB5A2E0A-9099-4B08-B3BB-FA68070AA4A6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Billing/MainModule/View/MainView/BillingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "showPopUP(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

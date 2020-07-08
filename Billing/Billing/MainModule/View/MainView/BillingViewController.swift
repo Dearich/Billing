@@ -22,7 +22,6 @@ class BillingViewController: UIViewController {
     }()
     let headerView: HeaderView = {
         let view = HeaderView()
-        
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -57,11 +56,13 @@ class BillingViewController: UIViewController {
         progressView.layer.cornerRadius = 5
         setUpNavigationBar()
         headerView.headerViewDelegate = self
+        //test
+        headerView.dataSource.billingPopUpProtocol = self
+        //test
         bottomView.dataSource.contentOffsetYDelegate = self
         bottomView.bottomViewAddDelegate = self
         subView.newBillingViewDelegate = self
         newTransactionView.newTransactionViewCloseDelegate = self
-        HeaderCollectionViewCell.shared.showBillingPopUp = self
         print("viewDidLoad Finish")
     }
     func animationAddView() {
@@ -196,14 +197,13 @@ extension BillingViewController: ContentOffsetYProtocol {
         }
     }
 }
-
-extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
+extension BillingViewController: BillingPopUpProtocol, ClosePopUPDelegate {
     
     fileprivate func haptikEngine(_ generator: UINotificationFeedbackGenerator) {
         generator.notificationOccurred(.success)
         addBlurEffect()
     }
-    func showPopUP(_ billing: BillingModel) {
+    func showPopUp(_ billing: BillingModel) {
         let generator = UINotificationFeedbackGenerator()
         haptikEngine(generator)
         view.addSubview(billingPopUp)
@@ -213,13 +213,13 @@ extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
         billingPopUp.widthAnchor.constraint(equalToConstant: view.frame.width / 1.2).isActive = true
         billingPopUp.transform = CGAffineTransform(scaleX: 1, y: 1)
         billingPopUp.layer.cornerRadius = 15
+        
         presenter.objectForDelete = billing
         billingPopUp.balance.text = "Balance: \(billing.balance)"
         billingPopUp.owner.text = "Owner: \(billing.owner)"
         billingPopUp.dateLabel.text = stringDate(billing.date)
         UIView.animate(withDuration: 0.4) {
             self.billingPopUp.alpha = 1
-            
             
         }
     }
@@ -228,11 +228,18 @@ extension BillingViewController: ShowBillingPopUP,ClosePopUPDelegate {
             self.visualEffectView.alpha = 0
             self.billingPopUp.alpha = 0
             self.billingPopUp.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.presenter.deleteObject(self.presenter.objectForDelete!) {(_) in}
-            print(self.presenter.objectForDelete!)
-        }) { [weak self](_) in
-            self?.headerView.collectionView.reloadData()
-            self?.billingPopUp.removeFromSuperview()
+            self.presenter.deleteObject(self.presenter.objectForDelete!) { (_) in
+            }
+        }) { [weak self](bool) in
+            if bool {
+                DispatchQueue.main.async {
+                    print("reloaded")
+                    self?.presenter.getData()
+                    self?.headerView.collectionView.reloadData()
+                }
+                self?.billingPopUp.removeFromSuperview()
+            }
+            
         }
     }
     fileprivate func stringDate( _ date: Int) -> String {

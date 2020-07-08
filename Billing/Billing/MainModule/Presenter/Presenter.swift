@@ -12,7 +12,7 @@ import RxSwift
 
 protocol PresenterProtocol: ObjectForDeleteProtocol {
     var view: UIViewController { get }
-    var objectForDelete: Any? {get set}
+    var objectForDelete: BillingModel? {get set}
     func getData()
 }
 
@@ -21,7 +21,7 @@ class Presenter: PresenterProtocol {
     //    let view: BillingViewController
     lazy var getClass = GetClass()
     var headerViewMaxHeight: CGFloat = 0.0
-    var objectForDelete: Any?
+    var objectForDelete: BillingModel?
     let statusBarHeight = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
     required init(view: BillingViewController) {
         self.view = view
@@ -75,20 +75,21 @@ class Presenter: PresenterProtocol {
     }
     func deleteObject(_ object: Any, complition: @escaping (Bool) -> Void) {
         let deleteClass = DeleteClass(objectForDelete: object)
-        deleteClass.chooseRequest(with: .deleteBilling) { (response) in
-            if response as? Bool == true {
-                    self.getData()
-                complition(true)
-            } else {
+        deleteClass.chooseRequest(with: .deleteBilling) {[weak self] (response) in
+            if response == nil {
                 complition(false)
+            } else {
+                
+//                self?.getData()
+                complition(true)
             }
         }
-        deleteClass.chooseRequest(with: .deleteTransaction) { (response) in
-            if response as? Bool == true {
-                    self.getData()
-                complition(true)
-            } else {
+        deleteClass.chooseRequest(with: .deleteTransaction) {[weak self] (response) in
+            if response == nil {
                 complition(false)
+            } else {
+                self?.getData()
+                complition(true)
             }
         }
     }
@@ -107,6 +108,6 @@ extension Presenter:AddNewBillingProtocol {
             complition(true)
             self?.getData()
         }
-       
+        
     }
 }
