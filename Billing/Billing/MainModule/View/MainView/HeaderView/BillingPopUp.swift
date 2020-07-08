@@ -22,7 +22,7 @@ class BillingPopUp: UIView {
         label.font = .systemFont(ofSize: 21, weight: .bold)
         label.textColor = .white
         label.numberOfLines = 2
-        label.text = "Balance: 123123123"
+        label.text = "Balance: 0"
         return label
     }()
     // MARK: - Owner Label
@@ -48,7 +48,7 @@ class BillingPopUp: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = .white
-        label.text = "26 июля 2020"
+        label.text = "00 - 00 - 00"
         return label
     }()
     override init(frame: CGRect) {

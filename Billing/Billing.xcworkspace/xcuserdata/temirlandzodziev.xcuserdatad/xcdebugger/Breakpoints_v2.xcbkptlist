@@ -45,9 +45,9 @@
                   urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/View/MainView/BillingViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "231"
-                  endingLineNumber = "231"
-                  offsetFromSymbolStart = "149">
+                  startingLineNumber = "232"
+                  endingLineNumber = "232"
+                  offsetFromSymbolStart = "4">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -66,38 +66,6 @@
             endingLineNumber = "78"
             landmarkName = "deleteObject(_:complition:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A43D1A0A-D567-4764-8F24-7815C9361108 - 17857bb9b126ba38"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "Billing"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "142">
-               </Location>
-               <Location
-                  uuid = "A43D1A0A-D567-4764-8F24-7815C9361108 - 1304bb5c46c2f666"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in Billing.Presenter.deleteObject(_: Any, complition: (Swift.Bool) -&gt; ()) -&gt; ()"
-                  moduleName = "Billing"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temirlandzodziev/Billing/Billing/Billing/MainModule/Presenter/Presenter.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
-                  offsetFromSymbolStart = "147">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

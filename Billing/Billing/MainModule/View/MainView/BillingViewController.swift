@@ -228,18 +228,17 @@ extension BillingViewController: BillingPopUpProtocol, ClosePopUPDelegate {
             self.visualEffectView.alpha = 0
             self.billingPopUp.alpha = 0
             self.billingPopUp.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.presenter.deleteObject(self.presenter.objectForDelete!) { (_) in
-            }
-        }) { [weak self](bool) in
-            if bool {
-                DispatchQueue.main.async {
-                    print("reloaded")
+            self.presenter.deleteObject(self.presenter.objectForDelete!) { [weak self]( done ) in
+                if done {
                     self?.presenter.getData()
-                    self?.headerView.collectionView.reloadData()
                 }
-                self?.billingPopUp.removeFromSuperview()
             }
-            
+        }) {[weak self](_) in
+            print("reload")
+            DispatchQueue.main.async {
+                self?.headerView.collectionView.reloadData()
+            }
+            self?.billingPopUp.removeFromSuperview()
         }
     }
     fileprivate func stringDate( _ date: Int) -> String {

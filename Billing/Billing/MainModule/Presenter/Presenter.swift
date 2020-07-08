@@ -75,12 +75,10 @@ class Presenter: PresenterProtocol {
     }
     func deleteObject(_ object: Any, complition: @escaping (Bool) -> Void) {
         let deleteClass = DeleteClass(objectForDelete: object)
-        deleteClass.chooseRequest(with: .deleteBilling) {[weak self] (response) in
+        deleteClass.chooseRequest(with: .deleteBilling) {(response) in
             if response == nil {
                 complition(false)
             } else {
-                
-//                self?.getData()
                 complition(true)
             }
         }

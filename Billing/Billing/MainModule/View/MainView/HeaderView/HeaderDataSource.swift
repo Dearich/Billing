@@ -67,5 +67,6 @@ extension HeaderDataSource: UICollectionViewDelegateFlowLayout {
 extension HeaderDataSource: FromCelltoHeaderView {
     func fromCelltoHeader(_ billing: BillingModel) {
         billingPopUpProtocol?.showPopUp(billing)
+        
     }
 }
