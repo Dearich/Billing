@@ -56,9 +56,7 @@ class BillingViewController: UIViewController {
         progressView.layer.cornerRadius = 5
         setUpNavigationBar()
         headerView.headerViewDelegate = self
-        //test
         headerView.dataSource.billingPopUpProtocol = self
-        //test
         bottomView.dataSource.contentOffsetYDelegate = self
         bottomView.bottomViewAddDelegate = self
         subView.newBillingViewDelegate = self
@@ -83,10 +81,13 @@ class BillingViewController: UIViewController {
         visualEffectView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closePopUpBlurPressed))
+        visualEffectView.addGestureRecognizer(tap)
         UIView.animate(withDuration: 0.4) {
             self.visualEffectView.alpha = 1
         }
     }
+    
     private func showBillings() {
         view.addSubview(headerView)
         headerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
@@ -118,6 +119,10 @@ class BillingViewController: UIViewController {
             billingArray.append(plus)
             self.headerView.dataSource.billingArray = billingArray
             self.headerView.control.numberOfPages = billingArray.count
+            DispatchQueue.main.async {
+                self.headerView.collectionView.reloadData()
+            }
+            
         }
     }
     func setUpBottomView(transactionArray: [TransactionModel]) {
@@ -203,6 +208,8 @@ extension BillingViewController: BillingPopUpProtocol, ClosePopUPDelegate {
         generator.notificationOccurred(.success)
         addBlurEffect()
     }
+    
+    // MARK: - Вызов PopUp
     func showPopUp(_ billing: BillingModel) {
         let generator = UINotificationFeedbackGenerator()
         haptikEngine(generator)
@@ -213,7 +220,6 @@ extension BillingViewController: BillingPopUpProtocol, ClosePopUPDelegate {
         billingPopUp.widthAnchor.constraint(equalToConstant: view.frame.width / 1.2).isActive = true
         billingPopUp.transform = CGAffineTransform(scaleX: 1, y: 1)
         billingPopUp.layer.cornerRadius = 15
-        
         presenter.objectForDelete = billing
         billingPopUp.balance.text = "Balance: \(billing.balance)"
         billingPopUp.owner.text = "Owner: \(billing.owner)"
@@ -223,24 +229,28 @@ extension BillingViewController: BillingPopUpProtocol, ClosePopUPDelegate {
             
         }
     }
-    func dissmis() {
+    // MARK: - Логика кнопки удаления
+    func deleteButtonPressed() {
         UIView.animate(withDuration: 0.4, animations: {
             self.visualEffectView.alpha = 0
             self.billingPopUp.alpha = 0
             self.billingPopUp.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.presenter.deleteObject(self.presenter.objectForDelete!) { [weak self]( done ) in
-                if done {
-                    self?.presenter.getData()
-                }
-            }
-        }) {[weak self](_) in
-            print("reload")
-            DispatchQueue.main.async {
-                self?.headerView.collectionView.reloadData()
-            }
+            self.presenter.deleteObject(self.presenter.objectForDelete!)
+        }) { [weak self](_) in
             self?.billingPopUp.removeFromSuperview()
         }
     }
+    // MARK: - Кнопка закрытия при нажатии на blur
+    @objc func closePopUpBlurPressed() {
+        UIView.animate(withDuration: 0.4, animations: {
+            self.visualEffectView.alpha = 0
+            self.billingPopUp.alpha = 0
+            self.billingPopUp.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }) { [weak self](_) in
+            self?.billingPopUp.removeFromSuperview()
+        }
+    }
+    
     fileprivate func stringDate( _ date: Int) -> String {
         let date = Date(timeIntervalSince1970: Double(date))
         let dateFormater = DateFormatter()
@@ -251,12 +261,9 @@ extension BillingViewController: BillingPopUpProtocol, ClosePopUPDelegate {
         return strDate
     }
 }
+// MARK: - Удаление транзакций
 extension BillingViewController: DeleteTransactionsDelegate {
     func getIndexPath( _ indexPath: IndexPath, _ transaction: [TransactionModel]) {
-        presenter.deleteObject(transaction[indexPath.row]) {[weak self] (done) in
-            if done {
-                self?.bottomView.tableView.reloadData()
-            }
-        }
+        presenter.deleteObject(transaction[indexPath.row])
     }
 }

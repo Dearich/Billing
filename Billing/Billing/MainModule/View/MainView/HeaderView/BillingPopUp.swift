@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ClosePopUPDelegate: class {
-    func dissmis()
+    func deleteButtonPressed()
 }
 
 class BillingPopUp: UIView {
@@ -73,6 +73,6 @@ class BillingPopUp: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     @objc func handleDissmis() {
-        closePopUPDelegate?.dissmis()
+        closePopUPDelegate?.deleteButtonPressed()
     }
 }

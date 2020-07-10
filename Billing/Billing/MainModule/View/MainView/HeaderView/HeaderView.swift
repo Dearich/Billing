@@ -62,7 +62,7 @@ class HeaderView: UIView, HeaderDataSourceProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 }
-extension HeaderView {
+extension HeaderView{
     func shouldStartAnimation() {
         headerViewDelegate?.showPopUpView()
     }

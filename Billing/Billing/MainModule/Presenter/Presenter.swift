@@ -73,23 +73,21 @@ class Presenter: PresenterProtocol {
             _ = UIAlertController(alertType: .lostInternet, presenter: self)
         }
     }
-    func deleteObject(_ object: Any, complition: @escaping (Bool) -> Void) {
+    func deleteObject(_ object: Any) {
         let deleteClass = DeleteClass(objectForDelete: object)
-        deleteClass.chooseRequest(with: .deleteBilling) {(response) in
-            if response == nil {
-                complition(false)
-            } else {
-                complition(true)
-            }
-        }
-        deleteClass.chooseRequest(with: .deleteTransaction) {[weak self] (response) in
-            if response == nil {
-                complition(false)
-            } else {
+        deleteClass.deleteBilling(with: .deleteBilling) { [weak self] (response) in
+            if response != nil {
                 self?.getData()
-                complition(true)
             }
         }
+        
+        
+        deleteClass.deleteTransaction(with: .deleteTransaction) { [weak self](response) in
+            if response != nil {
+                self?.getData()
+            }
+        }
+        
     }
 }
 

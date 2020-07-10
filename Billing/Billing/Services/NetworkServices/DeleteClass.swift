@@ -10,55 +10,47 @@ import Foundation
 import Alamofire
 
 protocol ObjectForDeleteProtocol: class {
-    func deleteObject(_ object: Any, complition: @escaping(_ done: Bool) -> Void)
+    func deleteObject(_ object: Any)
 }
 
-class DeleteClass: NetworkSupportProtocol {
+class DeleteClass {
     var objectForDelete: Any?
     init(objectForDelete: Any) {
         self.objectForDelete = objectForDelete
     }
-    func chooseRequest(with request: Request, compliton: @escaping (Any?) -> Void) {
-        switch request {
-        // MARK: - Delete Billings
-        case .deleteBilling:
-            if objectForDelete is BillingModel {
-                guard let billing = objectForDelete as? BillingModel else {return}
-                let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
-                let params = ["id": billing.id]
-                AF.request(request.rawValue, method: .delete,
-                                                    parameters: params,
-                                                    headers: headers)
-                                                    .response { (response) in
-                        if response.error != nil {
-                            compliton(nil)
-                        } else {
-                            print("ObjectDeleted")
-                            compliton(response)
-                        }
+    // MARK: - Delete Billings
+    func deleteBilling(with request: Request, complition: @escaping(_ done: Any?) -> Void) {
+        guard let billing = objectForDelete as? BillingModel else {return}
+        let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+        let params = ["id": billing.id]
+        AF.request(request.rawValue, method: .delete,
+                                            parameters: params,
+                                            headers: headers)
+                                            .response { (response) in
+                if response.error != nil {
+                    complition(nil)
+                } else {
+                    print("ObjectDeleted")
+                    complition(response)
                 }
+        }
+    }
+    func deleteTransaction(with request: Request, complition: @escaping(_ done: Any?) -> Void) {
+        if objectForDelete is TransactionModel {
+            guard let transaction = objectForDelete as? TransactionModel else {return}
+            let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+            let params = ["id": transaction.id]
+            AF.request(request.rawValue, method: .delete,
+                                                parameters: params,
+                                                headers: headers)
+                                                .response { (response) in
+                    if response.error != nil {
+                        complition(nil)
+                    } else {
+                        print("ObjectDeleted")
+                        complition(response)
+                    }
             }
-        // MARK: - Delete Transactions
-        case .deleteTransaction:
-            if objectForDelete is TransactionModel {
-                guard let transaction = objectForDelete as? TransactionModel else {return}
-                let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
-                let params = ["id": transaction.id]
-                AF.request(request.rawValue, method: .delete,
-                                                    parameters: params,
-                                                    headers: headers)
-                                                    .response { (response) in
-                        if response.error != nil {
-                            compliton(nil)
-                        } else {
-                            print("ObjectDeleted")
-                            compliton(response)
-                        }
-                }
-            }
-            
-        default:
-            return
         }
     }
 }
