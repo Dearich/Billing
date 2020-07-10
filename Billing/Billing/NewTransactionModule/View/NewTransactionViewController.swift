@@ -12,7 +12,11 @@ class NewTransactionViewController: UIViewController {
 
     var presenter: NewTransactionPresenter!
     var billingViewController: BillingViewController?
-
+    
+    @IBOutlet weak var sumTextField: UITextField!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var titleTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let closeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(closeAction))
@@ -21,6 +25,12 @@ class NewTransactionViewController: UIViewController {
     }
     
     @objc func closeAction() {
+        close(billingViewController: billingViewController, view: self.view)
+    }
+    
+    @IBAction func doneAction(_ sender: UIButton) {
+        //TODO проверка полей на заполнение
+        presenter.saveTransaction()
         close(billingViewController: billingViewController, view: self.view)
     }
 }

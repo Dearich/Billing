@@ -58,6 +58,7 @@ class BillingViewController: UIViewController {
         bottomView.bottomViewDelegate = self
         newBillingView.newBillingViewDelegate = self
         presenter.getBillings()
+        presenter.getTransaction()
         deleteView?.presenter.collectionView = headerView.collectionView
         newTransactionView.billingViewController = self
     }
@@ -89,6 +90,5 @@ class BillingViewController: UIViewController {
         guard let transactions = transactionArray else { return }
         self.bottomView.dataSource.transactions = transactions
         self.bottomView.tableView.reloadData()
-        
     }
 }
