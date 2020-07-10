@@ -9,35 +9,34 @@
 import Foundation
 import Alamofire
 
-protocol NetworkSupportProtocol: class {
-    func chooseRequest(with request: Request, compliton: @escaping (Any?) -> Void)
-}
+class GetClass {
 
-class GetClass: NetworkSupportProtocol {
-
-    func chooseRequest(with request: Request, compliton: @escaping (Any?) -> Void) {
-        let backgroundQueue = DispatchQueue(label: "azizbek.ru/backgroundTask", qos: .background, attributes: .concurrent)
-        switch request {
-        case .getBilling:
-            AF.request(request.rawValue).responseJSON(queue: backgroundQueue) { (response) in
-                JsonHelper.shared.parse(requestType: .getBilling, data: response) { (billings, transactions, error) in
-                    guard error == nil else { print(error!.localizedDescription); return }
-                    guard transactions == nil else {return}
-                    guard billings != nil else { return }
-                    compliton(billings)
+    private let backgroundQueue = DispatchQueue(label: "azizbek.ru/backgroundTask",
+                                                qos: .background, attributes: .concurrent)
+    func getBillings(with request: Request, compliton: @escaping ([Any]?, Error?) -> Void) {
+        
+        AF.request(request.rawValue).responseJSON(queue: backgroundQueue) { (response) in
+            JsonHelper.shared.parseBilling(with: response) { (billings, error) in
+                if let error = error {
+                    compliton( nil, error )
+                }
+                if let billings = billings {
+                    compliton( billings,nil )
                 }
             }
-        case .getTransaction:
-            AF.request(request.rawValue).responseJSON { (response) in
-                JsonHelper.shared.parse(requestType: .getTransaction, data: response) { (billings, transactions, error) in
-                    guard error == nil else { print(error!.localizedDescription); return }
-                    guard billings == nil else {return}
-                    guard transactions != nil else { return }
-                    compliton(transactions)
+        }
+    }
+
+    func getTransaction(with request: Request, compliton: @escaping ([TransactionModel]?, Error?) -> Void) {
+        AF.request(request.rawValue).responseJSON { (response) in
+            JsonHelper.shared.parseTransaction(data: response) { (transaction, error) in
+                if let error = error {
+                    compliton( nil, error )
+                }
+                if let transaction = transaction {
+                    compliton( transaction,nil )
                 }
             }
-        default:
-            return
         }
     }
 }

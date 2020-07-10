@@ -10,14 +10,16 @@ import UIKit
 import CenteredCollectionView
 
 protocol HeaderViewProtocol: class {
-    func showPopUpView()
+    func showPopUpAddView()
+    func showPopUpDeleteView(billing: BillingModel?)
+    var deleteView: DeleteViewController? { get }
 }
 
-class HeaderView: UIView, HeaderDataSourceProtocol {
-    
-    var control: UIPageControl = UIPageControl(frame: .zero)
+class HeaderCollectionView: UIView, HeaderDataSourceProtocol {
+    var deleteView: DeleteViewController?
     
 
+    var control: UIPageControl = UIPageControl(frame: .zero)
     weak var headerViewDelegate: HeaderViewProtocol?
 
     lazy var dataSource: HeaderDataSource = {
@@ -25,10 +27,10 @@ class HeaderView: UIView, HeaderDataSourceProtocol {
         return dataSource
     }()
 
-    let centeredCollectionViewFlowLayout = CenteredCollectionViewFlowLayout()
+    let centeredCollectionViewFlowLayout = UICollectionViewFlowLayout()
 
     lazy var collectionView: UICollectionView = {
-        let view = UICollectionView(centeredCollectionViewFlowLayout: self.centeredCollectionViewFlowLayout)
+        let view = UICollectionView(frame: .zero, collectionViewLayout: centeredCollectionViewFlowLayout)
         view.dataSource = self.dataSource
         view.delegate = self.dataSource
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -45,19 +47,12 @@ class HeaderView: UIView, HeaderDataSourceProtocol {
         collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         dataSource.headerDataSourceDelegate = self
         addSubview(collectionView)
-        collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         collectionView.addConstraintsWithFormat(format: "V:|-[v0]-20-|", views: collectionView)
-        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longTap(_:)))
-        collectionView.addGestureRecognizer(longPressGesture)
-        centeredCollectionViewFlowLayout.itemSize = CGSize(
-          width: 190,
-          height: self.bounds.height * 0.8
-        )
+        collectionView.addConstraintsWithFormat(format: "H:|-[v0]-|", views: collectionView)
         centeredCollectionViewFlowLayout.minimumLineSpacing = 15
-//        centeredCollectionViewFlowLayout.sectionInset  = .init(top: 0, left: 10, bottom: 20, right: 10)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        centeredCollectionViewFlowLayout.scrollDirection = .horizontal
         addSubview(control)
         control.translatesAutoresizingMaskIntoConstraints = false
         control.addConstraintsWithFormat(format: "V:[v0(20)]-|", views: control)
@@ -68,22 +63,7 @@ class HeaderView: UIView, HeaderDataSourceProtocol {
         control.isEnabled = false
 
     }
-
-    @objc func longTap(_ gesture: UIGestureRecognizer) {
-
-        switch gesture.state {
-        case .began:
-            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView))
-            else { return }
-
-        case .ended:
-
-            self.collectionView.reloadData()
-        default:
-            return
-        }
-    }
-
+    
     // MARK: - Padding and ScrollDirection in CV
 
     required init?(coder: NSCoder) {
@@ -91,8 +71,13 @@ class HeaderView: UIView, HeaderDataSourceProtocol {
     }
 }
 
-extension HeaderView {
-    func shouldStartAnimation() {
-        headerViewDelegate?.showPopUpView()
+extension HeaderCollectionView {
+    func shouldStartAnimationAddView() {
+        headerViewDelegate?.showPopUpAddView()
+    }
+    
+    func shouldStartAnimationDeleteView(billing: BillingModel?) {
+        headerViewDelegate?.showPopUpDeleteView(billing: billing)
+        deleteView = headerViewDelegate?.deleteView
     }
 }

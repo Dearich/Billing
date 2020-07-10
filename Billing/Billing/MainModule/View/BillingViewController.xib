@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BillingViewController" customModule="Billing" customModuleProvider="target">
             <connections>
-                <outlet property="progressView" destination="352-1a-nGJ" id="sWE-WB-Dhb"/>
+                <outlet property="activityIndicator" destination="BXw-qw-ypk" id="tCQ-kq-ZWb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,19 +18,15 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="352-1a-nGJ">
-                    <rect key="frame" x="77.5" y="443" width="259" height="10"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="10" id="VSS-E1-Pov"/>
-                        <constraint firstAttribute="width" constant="259" id="ofW-DE-oZ4"/>
-                    </constraints>
-                </progressView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="BXw-qw-ypk">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.91764705882352937" green="0.56470588235294117" blue="0.47843137254901957" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="352-1a-nGJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tkd-dj-BVS"/>
-                <constraint firstItem="352-1a-nGJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="puP-LF-vS5"/>
+                <constraint firstItem="BXw-qw-ypk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="5ES-vb-GQl"/>
+                <constraint firstItem="BXw-qw-ypk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="apK-Dk-fTf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>

@@ -15,7 +15,7 @@ extension UIAlertController {
         case gotError
     }
 
-    convenience init(alertType: TypeOfAlert, presenter: PresenterProtocol? = nil, or controller: UIViewController? = nil) {
+    convenience init(alertType: TypeOfAlert, presenter: MainPresenter? = nil, or controller: UIViewController? = nil) {
         switch alertType {
         case .lostInternet:
             self.init(title: "Отсутвует подключение!",
@@ -23,7 +23,7 @@ extension UIAlertController {
                       preferredStyle: .actionSheet)
             let okayButton = UIAlertAction(title: "OK", style: .cancel) { (_) in
                 guard let presenter = presenter else { return }
-                presenter.getData()
+                presenter.getBillings()
             }
             self.addAction(okayButton)
 

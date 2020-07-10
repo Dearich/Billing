@@ -15,7 +15,7 @@ protocol ContentOffsetYProtocol: class {
 
 class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
 
-    var transactions: [Any] = []
+    var transactions: [TransactionModel] = []
     weak var contentOffsetYDelegate: ContentOffsetYProtocol?
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

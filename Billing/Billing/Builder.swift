@@ -16,7 +16,13 @@ protocol ModuleBuilderProtocol {
 class ModuleBuilder {
     static func createMain() -> UIViewController {
         let view = BillingViewController()
-        let presenter = Presenter(view: view)
+        let presenter = MainPresenter(view: view)
+        view.presenter = presenter
+        return view
+    }
+    static func createDelete() -> DeleteViewController {
+        let view = DeleteViewController(nibName: "DeleteViewController", bundle: nil)
+        let presenter = DeletePresenter(view: view)
         view.presenter = presenter
         return view
     }

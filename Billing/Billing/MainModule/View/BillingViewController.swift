@@ -12,13 +12,15 @@ import Alamofire
 
 class BillingViewController: UIViewController {
 
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-    var presenter: Presenter!
+    var presenter: MainPresenter!
     var heightConstraint: NSLayoutConstraint!
 
-    let headerView: HeaderView = {
-        let view = HeaderView()
+//MARK:- Основные элементы интерфейса -
+    var deleteView: DeleteViewController?
+    let headerView: HeaderCollectionView = {
+        let view = HeaderCollectionView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -36,152 +38,51 @@ class BillingViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    let subView : NewBillingView = {
+
+    let newBillingView : NewBillingView = {
         let subView = NewBillingView()
         subView.view.backgroundColor = .clear
         return subView
     }()
+//MARK: -
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.getData()
-        progressView.layer.masksToBounds = true
-        progressView.layer.cornerRadius = 5
         setUpNavigationBar()
         headerView.headerViewDelegate = self
         bottomView.dataSource.contentOffsetYDelegate = self
-        subView.newBillingViewDelegate = self
-        print("viewDidLoad Finish")
+        newBillingView.newBillingViewDelegate = self
+        presenter.getBillings()
+        deleteView?.presenter.collectionView = headerView.collectionView
     }
 
     func animationAddView() {
-        
-        /*TODO:
-                4) Получать новый список с сервера
-                5) Обновлять collection
-         */
         addBlurEffect()
-        self.addChild(subView)
-        subView.view.frame = self.view.frame
-        self.view.addSubview(subView.view)
-        subView.didMove(toParent: self)
-        subView.becomeFirstResponder()
-        subView.view.alpha = 0.0
+        self.addChild(newBillingView)
+        newBillingView.view.frame = self.view.frame
+        self.view.addSubview(newBillingView.view)
+        newBillingView.didMove(toParent: self)
+        newBillingView.becomeFirstResponder()
+        newBillingView.view.alpha = 0.0
         UIView.animate(withDuration: 0.2) {
-            self.subView.view.alpha = 1.0
+            self.newBillingView.view.alpha = 1.0
         }
     }
 
-    private func addBlurEffect() {
-        view.addSubview(visualEffectView)
-        visualEffectView.alpha = 0
-        visualEffectView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        visualEffectView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-
-        UIView.animate(withDuration: 0.5) {
-            self.visualEffectView.alpha = 1
-        }
+    func setUpHeaderView(billingArray: [Any]?) {
+        let plus = PlusModel()
+        guard var localBillingArray = billingArray else { return }
+        localBillingArray.append(plus)
+        headerView.dataSource.billingArray = localBillingArray
+        headerView.collectionView.reloadData()
+        showBillings()
+        self.headerView.control.numberOfPages = localBillingArray.count
     }
 
-    private func showBillings() {
-        view.addSubview(headerView)
-        headerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        headerView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        headerView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        let heightConstraint = headerView.heightAnchor.constraint(equalToConstant: (view.frame.height / 3.9))
-        self.heightConstraint = heightConstraint
-        self.heightConstraint.isActive = true
-        showTransactions()
+    func setUpBottomView(transactionArray: [TransactionModel]?) {
+        guard let transactions = transactionArray else { return }
+        self.bottomView.dataSource.transactions = transactions
+        self.bottomView.tableView.reloadData()
+        
     }
-    private func showTransactions() {
-        view.addSubview(bottomView)
-        bottomView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        bottomView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        bottomView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
-        bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        bottomView.layer.masksToBounds = true
-    }
-
-    private func setUpNavigationBar() {
-        navigationController?.navigationBar.isHidden = true
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-    }
-
-    func setUpHeaderView(billingArray: [BillingModel]) {
-        DispatchQueue.main.async {
-            self.showBillings()
-            let plus = PlusModel()
-            var billingArray: [Any] = billingArray
-            billingArray.append(plus)
-            self.headerView.dataSource.billingArray = billingArray
-            self.headerView.control.numberOfPages = billingArray.count
-        }
-    }
-
-    func setUpBottomView(transactionArray: [TransactionModel]) {
-        DispatchQueue.main.async {
-            self.bottomView.dataSource.transactions = transactionArray
-            self.bottomView.tableView.reloadData()
-        }
-    }
-}
-
-extension BillingViewController: NewBillingViewCloseProtocol {
-    func close() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.visualEffectView.alpha = 0
-            self.subView.view.alpha = 0
-        })
-        { [weak self] (done) in
-            if done {
-                self?.headerView.collectionView.reloadData()
-                self?.visualEffectView.removeFromSuperview()
-                self?.subView.view.removeFromSuperview()
-            }
-        }
-    }
-}
-
-extension BillingViewController: HeaderViewProtocol {
-    func showPopUpView() {
-        animationAddView()
-    }
-}
-
-extension BillingViewController: ContentOffsetYProtocol {
-
-    func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void)) {
-        let minHight = presenter.statusBarHeight + 30
-        let newHight = (self.heightConstraint.constant) - contentOffsetY
-
-        self.heightConstraint.isActive = false
-
-        if newHight > presenter.headerViewMaxHeight {
-
-            self.heightConstraint.constant = presenter.headerViewMaxHeight
-            NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight > presenter.headerViewMaxHeight: \(self.heightConstraint.constant)")
-
-        } else if newHight < minHight {
-
-            self.heightConstraint.constant = minHight
-            NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight < minHight: \(self.heightConstraint.constant)")
-        } else {
-            self.heightConstraint.constant = newHight
-            NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight: \(self.heightConstraint.constant)")
-            complition(0)
-        }
-        let dinamicAlpha = ((self.heightConstraint.constant - presenter.headerViewMaxHeight) / minHight) + 1
-
-        UIView.animate(withDuration: 0.25) {
-//            self.headerView.collectionView.alpha = dinamicAlpha
-        }
-    }
-
 }
