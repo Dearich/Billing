@@ -65,12 +65,13 @@ extension MainPresenter:AddNewBillingProtocol {
         let ownerID = 1
         let savingObj = NewBilling(balance: balance, date: Int(timestamp), ownerID: ownerID)
         let post = PostClass(savingObject: savingObj)
-        post.saveBilling(with: .postBilling) { (response, error) in
+        post.saveBilling(with: .postBilling) {[weak self] (response, error) in
             if error != nil {
                 complition( false )
             }
             if response != nil {
                 complition( true )
+                self?.getBillings()
             }
         }
     }

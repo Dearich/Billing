@@ -44,16 +44,22 @@ class BillingViewController: UIViewController {
         subView.view.backgroundColor = .clear
         return subView
     }()
-//MARK: -
+    
+    let newTransactionView: NewTransactionViewController = {
+        let view = ModuleBuilder.createTransaction()
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
         headerView.headerViewDelegate = self
         bottomView.dataSource.contentOffsetYDelegate = self
+        bottomView.bottomViewDelegate = self
         newBillingView.newBillingViewDelegate = self
         presenter.getBillings()
         deleteView?.presenter.collectionView = headerView.collectionView
+        newTransactionView.billingViewController = self
     }
 
     func animationAddView() {

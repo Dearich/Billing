@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BottomViewProtocol: class {
+    func showNewTransactionView()
+}
+
 class BottomView: UIView {
 
     var contentOffsetY: ContentOffsetYProtocol!
@@ -17,6 +21,8 @@ class BottomView: UIView {
         let dataSource = ButtomDataSource()
         return dataSource
     }()
+
+    weak var bottomViewDelegate: BottomViewProtocol?
 
     lazy var tableView: UITableView = {
         let view = UITableView()
@@ -63,6 +69,7 @@ class BottomView: UIView {
     @objc func addTapped(_ sender: UIButton) {
         if sender == addButton {
             print("addTapped")
+            bottomViewDelegate?.showNewTransactionView()
            
         }
     }

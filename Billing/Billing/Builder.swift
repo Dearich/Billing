@@ -20,9 +20,17 @@ class ModuleBuilder {
         view.presenter = presenter
         return view
     }
+
     static func createDelete() -> DeleteViewController {
         let view = DeleteViewController(nibName: "DeleteViewController", bundle: nil)
         let presenter = DeletePresenter(view: view)
+        view.presenter = presenter
+        return view
+    }
+
+    static func createTransaction() -> NewTransactionViewController {
+        let view = NewTransactionViewController(nibName: "NewTransactionViewController", bundle: nil)
+        let presenter = NewTransactionPresenter(view: view)
         view.presenter = presenter
         return view
     }

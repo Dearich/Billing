@@ -39,6 +39,8 @@
 		158015BC24B9173A00A620D2 /* ExtMainConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158015BB24B9173A00A620D2 /* ExtMainConstraints.swift */; };
 		158015C324B920FF00A620D2 /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158015C124B920FF00A620D2 /* NewTransactionViewController.swift */; };
 		158015C424B920FF00A620D2 /* NewTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 158015C224B920FF00A620D2 /* NewTransactionViewController.xib */; };
+		158015C724B9226E00A620D2 /* NewTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158015C624B9226E00A620D2 /* NewTransactionPresenter.swift */; };
+		158015CA24B927ED00A620D2 /* ExtBottomViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158015C924B927ED00A620D2 /* ExtBottomViewProtocol.swift */; };
 		15DDCA4324AA43B000CD8DF3 /* CosntraintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */; };
 		15DDCA4524AB86C500CD8DF3 /* VibrationExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */; };
 		15DDCA4724ABC16000CD8DF3 /* PlusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */; };
@@ -95,6 +97,8 @@
 		158015BB24B9173A00A620D2 /* ExtMainConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMainConstraints.swift; sourceTree = "<group>"; };
 		158015C124B920FF00A620D2 /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
 		158015C224B920FF00A620D2 /* NewTransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTransactionViewController.xib; sourceTree = "<group>"; };
+		158015C624B9226E00A620D2 /* NewTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionPresenter.swift; sourceTree = "<group>"; };
+		158015C924B927ED00A620D2 /* ExtBottomViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtBottomViewProtocol.swift; sourceTree = "<group>"; };
 		15DDCA4224AA43B000CD8DF3 /* CosntraintService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosntraintService.swift; sourceTree = "<group>"; };
 		15DDCA4424AB86C500CD8DF3 /* VibrationExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrationExtention.swift; sourceTree = "<group>"; };
 		15DDCA4624ABC16000CD8DF3 /* PlusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusModel.swift; sourceTree = "<group>"; };
@@ -153,8 +157,8 @@
 		151FCD0124A600F4000B6103 /* Billing */ = {
 			isa = PBXGroup;
 			children = (
-				158015BF24B920D500A620D2 /* NewTransactionModule */,
 				151FCD2624A62FF7000B6103 /* Builder.swift */,
+				158015BF24B920D500A620D2 /* NewTransactionModule */,
 				155A716424B8A38000495155 /* DeleteModule */,
 				15DDCA4824ABDF2300CD8DF3 /* MainModule */,
 				151FCD3024A63119000B6103 /* Services */,
@@ -250,7 +254,7 @@
 		155A716424B8A38000495155 /* DeleteModule */ = {
 			isa = PBXGroup;
 			children = (
-				155A716A24B8A3C500495155 /* DeletePresenter.swift */,
+				158015C824B9227D00A620D2 /* Presenter */,
 				155A716524B8A39300495155 /* View */,
 			);
 			path = DeleteModule;
@@ -272,6 +276,7 @@
 				158015B724B915E800A620D2 /* ExtNewBillingViewCloseProtocol.swift */,
 				158015B924B9163500A620D2 /* ExtContentOffsetYProtocol.swift */,
 				158015BB24B9173A00A620D2 /* ExtMainConstraints.swift */,
+				158015C924B927ED00A620D2 /* ExtBottomViewProtocol.swift */,
 			);
 			path = MainExtentions;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 		158015BF24B920D500A620D2 /* NewTransactionModule */ = {
 			isa = PBXGroup;
 			children = (
+				158015C524B9223A00A620D2 /* Presenter */,
 				158015C024B920E500A620D2 /* View */,
 			);
 			path = NewTransactionModule;
@@ -291,6 +297,22 @@
 				158015C224B920FF00A620D2 /* NewTransactionViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		158015C524B9223A00A620D2 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				158015C624B9226E00A620D2 /* NewTransactionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		158015C824B9227D00A620D2 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				155A716A24B8A3C500495155 /* DeletePresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		15DDCA4824ABDF2300CD8DF3 /* MainModule */ = {
@@ -532,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158015C724B9226E00A620D2 /* NewTransactionPresenter.swift in Sources */,
 				151FCD3D24A8D4EE000B6103 /* JsonHelper.swift in Sources */,
 				151FCD4124A92C17000B6103 /* TransactionModel.swift in Sources */,
 				79D8406624A9F51500D214FB /* BottomTableViewCell.swift in Sources */,
@@ -542,6 +565,7 @@
 				1529448424AD0F80004BE1C3 /* ButtomDataSource.swift in Sources */,
 				158015BC24B9173A00A620D2 /* ExtMainConstraints.swift in Sources */,
 				151FCD0324A600F4000B6103 /* AppDelegate.swift in Sources */,
+				158015CA24B927ED00A620D2 /* ExtBottomViewProtocol.swift in Sources */,
 				1529448624AD3167004BE1C3 /* PostClass.swift in Sources */,
 				158015B624B9143100A620D2 /* ExtHeaderViewProtocol.swift in Sources */,
 				155A716B24B8A3C500495155 /* DeletePresenter.swift in Sources */,

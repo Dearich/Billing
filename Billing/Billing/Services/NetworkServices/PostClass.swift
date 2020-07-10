@@ -38,8 +38,7 @@ class PostClass {
             }
         }
     }
-    
-    
+
     func saveTransaction(with request: Request, compliton: @escaping (Any?, Error?) -> Void) {
         if savingObject is TransactionModel {
             guard let transaction = savingObject as? TransactionModel else { return }

@@ -27,24 +27,30 @@ class DeleteViewController: UIViewController {
         presenter.setUpDeleteView()
     }
     @objc func closeAction() {
-       close()
+        close(billingViewController: billingViewController, view: self.view)
     }
-
-    private func close() {
-        guard let billingViewController = self.billingViewController else { return }
-        UIView.animate(withDuration: 0.3, animations: {
-            billingViewController.visualEffectView.alpha = 0
-            billingViewController.deleteView?.view.alpha = 0
-        })
-        
-        billingViewController.visualEffectView.removeFromSuperview()
-        view.removeFromSuperview()
-
-    }
+    
     @IBAction func deleteAction(_ sender: Any) {
         presenter.deleteBilling()
         print("deleted")
-        close()
+        close(billingViewController: billingViewController, view: self.view)
         
+    }
+}
+extension UIViewController {
+    
+    func close(billingViewController: BillingViewController?, view: UIView) {
+        guard let billingViewController = billingViewController else { return }
+
+        UIView.animate(withDuration: 0.3, animations: {
+            billingViewController.visualEffectView.alpha = 0
+            view.alpha = 0
+        }) { (bool) in
+            if bool == true {
+                billingViewController.visualEffectView.removeFromSuperview()
+                self.view.removeFromSuperview()
+            }
+           
+        }
     }
 }
