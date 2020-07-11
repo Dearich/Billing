@@ -20,17 +20,14 @@ extension BillingViewController: ContentOffsetYProtocol {
 
             self.heightConstraint.constant = headerViewMaxHeight
             NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight > presenter.headerViewMaxHeight: \(self.heightConstraint.constant)")
 
         } else if newHight < minHight {
 
             self.heightConstraint.constant = minHight
             NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight < minHight: \(self.heightConstraint.constant)")
         } else {
             self.heightConstraint.constant = newHight
             NSLayoutConstraint.activate([self.heightConstraint])
-            print("newHight: \(self.heightConstraint.constant)")
             complition(0)
         }
         let dinamicAlpha = ((self.heightConstraint.constant - headerViewMaxHeight) / minHight) + 1

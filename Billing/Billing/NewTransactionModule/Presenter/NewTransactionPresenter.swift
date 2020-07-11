@@ -22,7 +22,11 @@ class NewTransactionPresenter {
         guard let selectedImageName = view.segmentedControl.titleForSegment(at: selectedSegment) else { return }
         guard let sumText = view.sumTextField.text else { return }
         guard let titleText = view.titleTextField.text else { return }
-        let newTransaction = TransactionModel(date: Int(timestamp), icon: "\(selectedImageName)", ownerID: ownerID, sum: Int(sumText) ?? 0, title: titleText)
+        let newTransaction = NewTransactionModel(date: Int(timestamp),
+                                            icon: "\(selectedImageName)",
+                                            ownerID: ownerID,
+                                            sum: Int(sumText) ?? 0,
+                                            title: titleText)
         let postTransaction = PostClass(savingObject: newTransaction)
         postTransaction.saveTransaction(with: .postTransaction) { [weak self] (response, error) in
             if error != nil {

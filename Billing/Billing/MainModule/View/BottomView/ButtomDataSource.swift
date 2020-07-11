@@ -23,7 +23,8 @@ class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
        }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as? BottomTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell",
+                                                       for: indexPath) as? BottomTableViewCell
             else { return UITableViewCell() }
 
            cell.transaction = transactions[indexPath.row]
@@ -35,11 +36,32 @@ class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
            return 70
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            let correntTransaction = transactions[indexPath.row]
+            print(correntTransaction.id)
+            DeleteClass.shared.deleteTransactionwith(request: .deleteTransaction,
+                                                     objectForDelete: correntTransaction) { [weak self] (response, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                if let response = response {
+                    print(response)
+                    self?.transactions.remove(at: indexPath.row)
+                    DispatchQueue.main.async {
+                        tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+                    }
+                }
+            }
+        }
+    }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         contentOffsetYDelegate?.headerAnimation(contentOffsetY: scrollView.contentOffset.y) { (contentOffset) in
         scrollView.contentOffset.y = contentOffset
         }  // для анимации хедера
     }
-
 }

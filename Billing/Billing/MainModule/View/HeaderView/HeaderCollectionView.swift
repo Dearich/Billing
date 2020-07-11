@@ -17,7 +17,6 @@ protocol HeaderViewProtocol: class {
 
 class HeaderCollectionView: UIView, HeaderDataSourceProtocol {
     var deleteView: DeleteViewController?
-    
 
     var control: UIPageControl = UIPageControl(frame: .zero)
     weak var headerViewDelegate: HeaderViewProtocol?

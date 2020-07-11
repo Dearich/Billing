@@ -17,7 +17,7 @@ class BillingViewController: UIViewController {
     var presenter: MainPresenter!
     var heightConstraint: NSLayoutConstraint!
 
-//MARK:- Основные элементы интерфейса -
+// MARK: - Основные элементы интерфейса -
     var deleteView: DeleteViewController?
     let headerView: HeaderCollectionView = {
         let view = HeaderCollectionView()

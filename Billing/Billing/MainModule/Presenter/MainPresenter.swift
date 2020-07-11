@@ -19,7 +19,6 @@ class MainPresenter {
     }
 
     func getBillings() {
-        print("getData()")
         DispatchQueue.main.async {
             self.view.activityIndicator.startAnimating()
         }
@@ -34,7 +33,6 @@ class MainPresenter {
                     self?.view.activityIndicator.stopAnimating()
                     self?.view.activityIndicator.isHidden = true
                     self?.view.setUpHeaderView(billingArray: billings)
-                    
                 }
             }
         } else {

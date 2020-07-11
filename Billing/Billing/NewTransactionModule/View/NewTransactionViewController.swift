@@ -29,8 +29,13 @@ class NewTransactionViewController: UIViewController {
     }
     
     @IBAction func doneAction(_ sender: UIButton) {
-        //TODO проверка полей на заполнение
-        presenter.saveTransaction()
-        close(billingViewController: billingViewController, view: self.view)
+        if let sumText = sumTextField.text, let titleText = titleTextField.text,
+            !sumText.isEmpty && !titleText.isEmpty {
+            presenter.saveTransaction()
+            close(billingViewController: billingViewController, view: self.view)
+        } else {
+            _ = UIAlertController(alertType: .emptyField, or: self)
+        }
+        
     }
 }

@@ -68,10 +68,7 @@ class BottomView: UIView {
 
     @objc func addTapped(_ sender: UIButton) {
         if sender == addButton {
-            print("addTapped")
             bottomViewDelegate?.showNewTransactionView()
-           
         }
     }
-
 }

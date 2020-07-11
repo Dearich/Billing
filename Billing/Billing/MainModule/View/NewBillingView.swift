@@ -100,7 +100,6 @@ class NewBillingView: UIViewController {
                 if bool {
                     DispatchQueue.main.async {
                         self?.newBillingViewDelegate?.close()
-                        
                     }
                 } else {
                     DispatchQueue.main.async {

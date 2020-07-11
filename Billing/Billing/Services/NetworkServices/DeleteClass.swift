@@ -14,7 +14,7 @@ class DeleteClass {
     // MARK: - Delete Billings
     func deleteBilling(with request: Request, objectForDelete: BillingModel?,
                        complition: @escaping(_ done: Data?, Error?) -> Void) {
-        guard let billing = objectForDelete else {return}
+        guard let billing = objectForDelete else { return }
         let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
         let params = ["id": billing.id]
         AF.request(request.rawValue, method: .delete,
@@ -27,6 +27,25 @@ class DeleteClass {
                     print("ObjectDeleted")
                     complition(response.data,nil)
                 }
+        }
+    }
+
+    func deleteTransactionwith(request: Request, objectForDelete: TransactionModel?,
+                               complition: @escaping(_ done: Data?, Error?) -> Void) {
+        guard let transaction = objectForDelete else { return }
+        let headers: HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+        let params = ["id": transaction.id]
+        AF.request(request.rawValue, method: .delete,
+                   parameters: params,
+                   headers: headers)
+            .response { (response) in
+                if let error = response.error {
+                    complition( nil, error )
+                }
+                if let response = response.data {
+                    complition( response, nil )
+                }
+                
         }
     }
 }

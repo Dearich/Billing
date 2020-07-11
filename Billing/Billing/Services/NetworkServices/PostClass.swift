@@ -40,8 +40,8 @@ class PostClass {
     }
 
     func saveTransaction(with request: Request, compliton: @escaping (Any?, Error?) -> Void) {
-        if savingObject is TransactionModel {
-            guard let transaction = savingObject as? TransactionModel else { return }
+        if savingObject is NewTransactionModel {
+            guard let transaction = savingObject as? NewTransactionModel else { return }
 
             let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
 

@@ -46,7 +46,8 @@ class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDe
 
 extension HeaderDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 190.0, height: collectionView.frame.height * 0.75)
     }
 }
