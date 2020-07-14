@@ -9,30 +9,57 @@
 import Foundation
 import Alamofire
 
-/*TODO:
-1) Дописать метод добавления новых элементов
-2) Создать всплывающие окна для создания новых элементов
-3) Протоколы для передачи данных из всплывающих окон в presenter для сохранения на сервере
-
- */
-
-class PostClass: NetworkSupportProtocol {
+class PostClass {
 
     let savingObject: Any
 
     init(savingObject: Any) {
         self.savingObject = savingObject
     }
-    func chooseRequest(with request: Request, compliton: @escaping (Any?) -> Void) {
-        switch request {
-        case .postBilling:
-            if savingObject is BillingModel {
-                guard let billing = savingObject as? BillingModel else { return }
-                let parameters = billing.convertToDic()
+    
+    func saveBilling(with request: Request, compliton: @escaping (Any?, Error?) -> Void) {
+        if savingObject is NewBilling {
+            guard let billing = savingObject as? NewBilling else { return }
+            let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+
+            let parameters = [
+                "balance": "\(billing.balance)",
+                "date": "\(billing.date)",
+                "ownerID": "\(billing.ownerID)"
+            ]
+            
+            AF.request(request.rawValue,method: .post,
+                       parameters: parameters,
+                       headers:headers).response { (response) in
+                        if let error = response.error {
+                            compliton(nil, error )
+                        }
+                        compliton(response, nil)
             }
-//      case .postTransaction:
-        default:
-            return
+        }
+    }
+
+    func saveTransaction(with request: Request, compliton: @escaping (Any?, Error?) -> Void) {
+        if savingObject is NewTransactionModel {
+            guard let transaction = savingObject as? NewTransactionModel else { return }
+
+            let headers: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+
+            let parameters = [
+                "date": "\(transaction.date)",
+                "icon": "\(transaction.icon)",
+                "ownerID": "\(transaction.ownerID)",
+                "sum": "\(transaction.sum)",
+                "title": "\(transaction.title)"
+            ]
+            AF.request(request.rawValue,method: .post,
+                       parameters: parameters,
+                       headers:headers).response { (response) in
+                        if let error = response.error {
+                            compliton(nil, error )
+                        }
+                        compliton(response, nil)
+            }
         }
     }
 }

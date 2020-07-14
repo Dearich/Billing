@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol BottomViewProtocol: class {
+    func showNewTransactionView()
+}
+
 class BottomView: UIView {
 
     var contentOffsetY: ContentOffsetYProtocol!
@@ -17,6 +21,8 @@ class BottomView: UIView {
         let dataSource = ButtomDataSource()
         return dataSource
     }()
+
+    weak var bottomViewDelegate: BottomViewProtocol?
 
     lazy var tableView: UITableView = {
         let view = UITableView()
@@ -36,7 +42,7 @@ class BottomView: UIView {
     // MARK: - init tableView on SubView
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tableView.register(BottomTableViewCell.self, forCellReuseIdentifier: "TableCell")
+        tableView.register(BottomTableViewCell.self, forCellReuseIdentifier: tableCellIdentifier)
         backgroundColor = .white
 
         addSubview(tableView)
@@ -53,10 +59,16 @@ class BottomView: UIView {
         addSubview(addButton)
         addButton.addConstraintsWithFormat(format: "V:|-[v0(35)]", views: addButton)
         addButton.addConstraintsWithFormat(format: "H:[v0(35)]-|", views: addButton)
+        addButton.addTarget(self, action: #selector(addTapped(_:)), for: .touchUpInside)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    @objc func addTapped(_ sender: UIButton) {
+        if sender == addButton {
+            bottomViewDelegate?.showNewTransactionView()
+        }
+    }
 }

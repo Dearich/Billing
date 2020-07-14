@@ -17,7 +17,9 @@ extension UIView {
                 viewDictinary[key] = view
                 view.translatesAutoresizingMaskIntoConstraints = false
             }
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewDictinary))
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: format,
+                                                                       options: NSLayoutConstraint.FormatOptions(),
+                                                                       metrics: nil, views: viewDictinary))
 
         }
 }
