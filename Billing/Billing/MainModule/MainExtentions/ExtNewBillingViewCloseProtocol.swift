@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ExtNewBillingViewCloseProtocol.swift
 //  Billing
 //
 //  Created by Азизбек on 11.07.2020.
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 extension BillingViewController: NewBillingViewCloseProtocol {
     func close() {
         UIView.animate(withDuration: 0.3, animations: {

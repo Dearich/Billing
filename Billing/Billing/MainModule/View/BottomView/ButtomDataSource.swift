@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+let tableCellIdentifier = "tableCell"
 protocol ContentOffsetYProtocol: class {
     func headerAnimation(contentOffsetY: CGFloat, complition: @escaping ((CGFloat) -> Void))
 }
@@ -23,7 +24,7 @@ class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
        }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell",
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier,
                                                        for: indexPath) as? BottomTableViewCell
             else { return UITableViewCell() }
 
@@ -41,9 +42,9 @@ class ButtomDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
                    forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             let correntTransaction = transactions[indexPath.row]
-            print(correntTransaction.id)
             DeleteClass.shared.deleteTransactionwith(request: .deleteTransaction,
-                                                     objectForDelete: correntTransaction) { [weak self] (response, error) in
+                                                     objectForDelete: correntTransaction)
+            { [weak self] (response, error) in
                 if let error = error {
                     print(error.localizedDescription)
                     return

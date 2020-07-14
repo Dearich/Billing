@@ -31,23 +31,11 @@ class DeletePresenter {
         DeleteClass.shared.deleteBilling(with: .deleteBilling,
                                          objectForDelete: cellBilling) {[weak self] (response, error) in
             if error != nil {
-                _ = UIAlertController(alertType: .gotError, or: self?.view)
+             UIAlertController(alertType: .gotError, or: self?.view)
             }
             if response == response {
                 self?.view.billingViewController?.presenter.getBillings()
             }
         }
     }
-}
-
-extension DeletePresenter {
-    fileprivate func stringDate( _ date: Int) -> String {
-          let date = Date(timeIntervalSince1970: Double(date))
-          let dateFormater = DateFormatter()
-          dateFormater.timeZone = TimeZone(abbreviation: "MSK")
-          dateFormater.locale = NSLocale.current
-          dateFormater.dateFormat = "dd MMMM"
-          let strDate = dateFormater.string(from: date)
-          return strDate
-      }
 }

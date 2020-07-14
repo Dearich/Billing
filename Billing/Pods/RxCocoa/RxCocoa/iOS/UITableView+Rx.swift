@@ -74,7 +74,7 @@ extension Reactive where Base: UITableView {
              .disposed(by: disposeBag)
     */
     public func items<Sequence: Swift.Sequence, Cell: UITableViewCell, Source: ObservableType>
-        (cellIdentifier: String, cellType: Cell.Type = Cell.self)
+        (tableCellIdentifier: String, cellType: Cell.Type = Cell.self)
         -> (_ source: Source)
         -> (_ configureCell: @escaping (Int, Sequence.Element, Cell) -> Void)
         -> Disposable
@@ -83,7 +83,7 @@ extension Reactive where Base: UITableView {
             return { configureCell in
                 let dataSource = RxTableViewReactiveArrayDataSourceSequenceWrapper<Sequence> { tv, i, item in
                     let indexPath = IndexPath(item: i, section: 0)
-                    let cell = tv.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! Cell
+                    let cell = tv.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath) as! Cell
                     configureCell(i, item, cell)
                     return cell
                 }
