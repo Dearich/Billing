@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CenteredCollectionView
 
+let collectionCellIdentifier = "collectionCell"
 protocol HeaderDataSourceProtocol:class {
     func shouldStartAnimationAddView()
     func shouldStartAnimationDeleteView(billing: BillingModel?)
@@ -31,7 +32,7 @@ class HeaderDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellIdentifier,
                                                             for: indexPath) as? HeaderCollectionViewCell
             else { return UICollectionViewCell() }
         cell.billing = billingArray[indexPath.row]
@@ -53,11 +54,11 @@ extension HeaderDataSource: UICollectionViewDelegateFlowLayout {
 }
 
 extension HeaderDataSource: ShowPopUpViewProtocol {
-
+    
     func animationDeleteView(billing: BillingModel?) {
         headerDataSourceDelegate?.shouldStartAnimationDeleteView(billing: billing)
     }
-
+    
     func animationAddView() {
         headerDataSourceDelegate?.shouldStartAnimationAddView()
     }

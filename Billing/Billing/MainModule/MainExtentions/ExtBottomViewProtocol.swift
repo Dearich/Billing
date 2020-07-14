@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ExtBottomViewProtocol.swift
 //  Billing
 //
 //  Created by Азизбек on 11.07.2020.

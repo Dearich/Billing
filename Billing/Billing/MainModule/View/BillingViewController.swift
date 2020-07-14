@@ -11,34 +11,34 @@ import RxSwift
 import Alamofire
 
 class BillingViewController: UIViewController {
-
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     var presenter: MainPresenter!
     var heightConstraint: NSLayoutConstraint!
-
-// MARK: - Основные элементы интерфейса -
+    
+    // MARK: - Основные элементы интерфейса -
     var deleteView: DeleteViewController?
     let headerView: HeaderCollectionView = {
         let view = HeaderCollectionView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     lazy var bottomView: BottomView = {
         let view = BottomView()
         view.contentOffsetY = self
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .light)
         let view = UIVisualEffectView(effect: blurEffect)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     let newBillingView : NewBillingView = {
         let subView = NewBillingView()
         subView.view.backgroundColor = .clear
@@ -49,7 +49,7 @@ class BillingViewController: UIViewController {
         let view = ModuleBuilder.createTransaction()
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavigationBar()
@@ -62,7 +62,7 @@ class BillingViewController: UIViewController {
         deleteView?.presenter.collectionView = headerView.collectionView
         newTransactionView.billingViewController = self
     }
-
+    
     func animationAddView() {
         addBlurEffect()
         self.addChild(newBillingView)
@@ -75,7 +75,7 @@ class BillingViewController: UIViewController {
             self.newBillingView.view.alpha = 1.0
         }
     }
-
+    
     func setUpHeaderView(billingArray: [Any]?) {
         let plus = PlusModel()
         guard var localBillingArray = billingArray else { return }
@@ -85,7 +85,7 @@ class BillingViewController: UIViewController {
         showBillings()
         self.headerView.control.numberOfPages = localBillingArray.count
     }
-
+    
     func setUpBottomView(transactionArray: [TransactionModel]?) {
         guard let transactions = transactionArray else { return }
         self.bottomView.dataSource.transactions = transactions

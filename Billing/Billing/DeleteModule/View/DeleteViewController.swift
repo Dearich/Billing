@@ -37,20 +37,3 @@ class DeleteViewController: UIViewController {
         
     }
 }
-extension UIViewController {
-    
-    func close(billingViewController: BillingViewController?, view: UIView) {
-        guard let billingViewController = billingViewController else { return }
-
-        UIView.animate(withDuration: 0.3, animations: {
-            billingViewController.visualEffectView.alpha = 0
-            view.alpha = 0
-        }) { (bool) in
-            if bool == true {
-                billingViewController.visualEffectView.removeFromSuperview()
-                self.view.removeFromSuperview()
-            }
-           
-        }
-    }
-}

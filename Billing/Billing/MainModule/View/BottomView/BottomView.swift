@@ -42,7 +42,7 @@ class BottomView: UIView {
     // MARK: - init tableView on SubView
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tableView.register(BottomTableViewCell.self, forCellReuseIdentifier: "TableCell")
+        tableView.register(BottomTableViewCell.self, forCellReuseIdentifier: tableCellIdentifier)
         backgroundColor = .white
 
         addSubview(tableView)

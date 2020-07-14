@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ExtHeaderViewProtocol.swift
 //  Billing
 //
 //  Created by Азизбек on 11.07.2020.
@@ -9,12 +9,12 @@
 import UIKit
 
 extension BillingViewController: HeaderViewProtocol {
-
+    
     fileprivate func haptikEngine(_ generator: UINotificationFeedbackGenerator) {
-           generator.notificationOccurred(.success)
-           addBlurEffect()
-       }
-
+        generator.notificationOccurred(.success)
+        addBlurEffect()
+    }
+    
     func showPopUpDeleteView(billing: BillingModel?) {
         let generator = UINotificationFeedbackGenerator()
         haptikEngine(generator)
@@ -32,7 +32,7 @@ extension BillingViewController: HeaderViewProtocol {
             deleteView.view.alpha = 1.0
         }
     }
-
+    
     func showPopUpAddView() {
         animationAddView()
     }

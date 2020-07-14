@@ -14,7 +14,8 @@ extension UIAlertController {
         case emptyField
         case gotError
     }
-
+    
+    @discardableResult
     convenience init(alertType: TypeOfAlert, presenter: MainPresenter? = nil, or controller: UIViewController? = nil) {
         switch alertType {
         case .lostInternet:
@@ -26,15 +27,15 @@ extension UIAlertController {
                 presenter.getBillings()
             }
             self.addAction(okayButton)
-
+            
         case .emptyField:
-
+            
             self.init(title: "Заполните поле!",
                       message: "Заполните все поля, затем попробуйте еще раз.",
                       preferredStyle: .alert)
             let okayButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             self.addAction(okayButton)
-
+            
         case .gotError:
             self.init(title: "Ошибка!",
                       message: "Ошибка сервера. Повторите позже.",
